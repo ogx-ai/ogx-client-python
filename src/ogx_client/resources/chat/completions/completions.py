@@ -7,23 +7,31 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .messages import (
+    MessagesResource,
+    AsyncMessagesResource,
+    MessagesResourceWithRawResponse,
+    AsyncMessagesResourceWithRawResponse,
+    MessagesResourceWithStreamingResponse,
+    AsyncMessagesResourceWithStreamingResponse,
+)
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._streaming import Stream, AsyncStream
-from ...types.chat import completion_list_params, completion_create_params
-from ..._base_client import make_request_options
-from ...types.chat_completion_chunk import ChatCompletionChunk
-from ...types.chat.completion_list_response import CompletionListResponse
-from ...types.chat.completion_create_response import CompletionCreateResponse
-from ...types.chat.completion_retrieve_response import CompletionRetrieveResponse
+from ...._streaming import Stream, AsyncStream
+from ....types.chat import completion_list_params, completion_create_params
+from ...._base_client import make_request_options
+from ....types.chat_completion_chunk import ChatCompletionChunk
+from ....types.chat.completion_list_response import CompletionListResponse
+from ....types.chat.completion_create_response import CompletionCreateResponse
+from ....types.chat.completion_retrieve_response import CompletionRetrieveResponse
 
 __all__ = ["CompletionsResource", "AsyncCompletionsResource"]
 
@@ -36,6 +44,17 @@ class CompletionsResource(SyncAPIResource):
     - Embedding models: these models generate embeddings to be used for semantic search.
     - Rerank models: these models reorder the documents based on their relevance to a query.
     """
+
+    @cached_property
+    def messages(self) -> MessagesResource:
+        """OGX Inference API for generating completions, chat completions, and embeddings.
+
+        This API provides the raw interface to the underlying models. Three kinds of models are supported:
+        - LLM models: these models generate "raw" and "chat" (conversational) completions.
+        - Embedding models: these models generate embeddings to be used for semantic search.
+        - Rerank models: these models reorder the documents based on their relevance to a query.
+        """
+        return MessagesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CompletionsResourceWithRawResponse:
@@ -557,6 +576,17 @@ class AsyncCompletionsResource(AsyncAPIResource):
     - Embedding models: these models generate embeddings to be used for semantic search.
     - Rerank models: these models reorder the documents based on their relevance to a query.
     """
+
+    @cached_property
+    def messages(self) -> AsyncMessagesResource:
+        """OGX Inference API for generating completions, chat completions, and embeddings.
+
+        This API provides the raw interface to the underlying models. Three kinds of models are supported:
+        - LLM models: these models generate "raw" and "chat" (conversational) completions.
+        - Embedding models: these models generate embeddings to be used for semantic search.
+        - Rerank models: these models reorder the documents based on their relevance to a query.
+        """
+        return AsyncMessagesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCompletionsResourceWithRawResponse:
@@ -1084,6 +1114,17 @@ class CompletionsResourceWithRawResponse:
             completions.list,
         )
 
+    @cached_property
+    def messages(self) -> MessagesResourceWithRawResponse:
+        """OGX Inference API for generating completions, chat completions, and embeddings.
+
+        This API provides the raw interface to the underlying models. Three kinds of models are supported:
+        - LLM models: these models generate "raw" and "chat" (conversational) completions.
+        - Embedding models: these models generate embeddings to be used for semantic search.
+        - Rerank models: these models reorder the documents based on their relevance to a query.
+        """
+        return MessagesResourceWithRawResponse(self._completions.messages)
+
 
 class AsyncCompletionsResourceWithRawResponse:
     def __init__(self, completions: AsyncCompletionsResource) -> None:
@@ -1098,6 +1139,17 @@ class AsyncCompletionsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             completions.list,
         )
+
+    @cached_property
+    def messages(self) -> AsyncMessagesResourceWithRawResponse:
+        """OGX Inference API for generating completions, chat completions, and embeddings.
+
+        This API provides the raw interface to the underlying models. Three kinds of models are supported:
+        - LLM models: these models generate "raw" and "chat" (conversational) completions.
+        - Embedding models: these models generate embeddings to be used for semantic search.
+        - Rerank models: these models reorder the documents based on their relevance to a query.
+        """
+        return AsyncMessagesResourceWithRawResponse(self._completions.messages)
 
 
 class CompletionsResourceWithStreamingResponse:
@@ -1114,6 +1166,17 @@ class CompletionsResourceWithStreamingResponse:
             completions.list,
         )
 
+    @cached_property
+    def messages(self) -> MessagesResourceWithStreamingResponse:
+        """OGX Inference API for generating completions, chat completions, and embeddings.
+
+        This API provides the raw interface to the underlying models. Three kinds of models are supported:
+        - LLM models: these models generate "raw" and "chat" (conversational) completions.
+        - Embedding models: these models generate embeddings to be used for semantic search.
+        - Rerank models: these models reorder the documents based on their relevance to a query.
+        """
+        return MessagesResourceWithStreamingResponse(self._completions.messages)
+
 
 class AsyncCompletionsResourceWithStreamingResponse:
     def __init__(self, completions: AsyncCompletionsResource) -> None:
@@ -1128,3 +1191,14 @@ class AsyncCompletionsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             completions.list,
         )
+
+    @cached_property
+    def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
+        """OGX Inference API for generating completions, chat completions, and embeddings.
+
+        This API provides the raw interface to the underlying models. Three kinds of models are supported:
+        - LLM models: these models generate "raw" and "chat" (conversational) completions.
+        - Embedding models: these models generate embeddings to be used for semantic search.
+        - Rerank models: these models reorder the documents based on their relevance to a query.
+        """
+        return AsyncMessagesResourceWithStreamingResponse(self._completions.messages)

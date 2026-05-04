@@ -153,9 +153,21 @@ from ogx_client.types.chat import (
 
 Methods:
 
-- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions.py">create</a>(\*\*<a href="src/ogx_client/types/chat/completion_create_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
-- <code title="get /v1/chat/completions/{completion_id}">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions.py">retrieve</a>(completion_id) -> <a href="./src/ogx_client/types/chat/completion_retrieve_response.py">CompletionRetrieveResponse</a></code>
-- <code title="get /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions.py">list</a>(\*\*<a href="src/ogx_client/types/chat/completion_list_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_list_response.py">CompletionListResponse</a></code>
+- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions/completions.py">create</a>(\*\*<a href="src/ogx_client/types/chat/completion_create_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+- <code title="get /v1/chat/completions/{completion_id}">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions/completions.py">retrieve</a>(completion_id) -> <a href="./src/ogx_client/types/chat/completion_retrieve_response.py">CompletionRetrieveResponse</a></code>
+- <code title="get /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions/completions.py">list</a>(\*\*<a href="src/ogx_client/types/chat/completion_list_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_list_response.py">CompletionListResponse</a></code>
+
+### Messages
+
+Types:
+
+```python
+from ogx_client.types.chat.completions import MessageListResponse
+```
+
+Methods:
+
+- <code title="get /v1/chat/completions/{completion_id}/messages">client.chat.completions.messages.<a href="./src/ogx_client/resources/chat/completions/messages.py">list</a>(completion_id, \*\*<a href="src/ogx_client/types/chat/completions/message_list_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completions/message_list_response.py">SyncOpenAICursorPage[MessageListResponse]</a></code>
 
 # Completions
 
