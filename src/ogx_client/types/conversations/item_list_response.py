@@ -40,6 +40,7 @@ __all__ = [
     "OpenAIResponseOutputMessageReasoningItem",
     "OpenAIResponseOutputMessageReasoningItemSummary",
     "OpenAIResponseOutputMessageReasoningItemContent",
+    "OpenAIResponseCompaction",
 ]
 
 
@@ -505,6 +506,16 @@ class OpenAIResponseOutputMessageReasoningItem(BaseModel):
     """The type identifier, always 'reasoning'."""
 
 
+class OpenAIResponseCompaction(BaseModel):
+    """A compaction item that summarizes prior conversation context."""
+
+    encrypted_content: str
+
+    id: Optional[str] = None
+
+    type: Optional[Literal["compaction"]] = None
+
+
 ItemListResponse: TypeAlias = Annotated[
     Union[
         OpenAIResponseMessageOutput,
@@ -517,6 +528,7 @@ ItemListResponse: TypeAlias = Annotated[
         OpenAIResponseOutputMessageMcpCall,
         OpenAIResponseOutputMessageMcpListTools,
         OpenAIResponseOutputMessageReasoningItem,
+        OpenAIResponseCompaction,
     ],
     PropertyInfo(discriminator="type"),
 ]

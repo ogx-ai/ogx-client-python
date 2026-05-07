@@ -41,6 +41,7 @@ __all__ = [
     "DataOpenAIResponseOutputMessageReasoningItem",
     "DataOpenAIResponseOutputMessageReasoningItemSummary",
     "DataOpenAIResponseOutputMessageReasoningItemContent",
+    "DataOpenAIResponseCompaction",
 ]
 
 
@@ -506,6 +507,16 @@ class DataOpenAIResponseOutputMessageReasoningItem(BaseModel):
     """The type identifier, always 'reasoning'."""
 
 
+class DataOpenAIResponseCompaction(BaseModel):
+    """A compaction item that summarizes prior conversation context."""
+
+    encrypted_content: str
+
+    id: Optional[str] = None
+
+    type: Optional[Literal["compaction"]] = None
+
+
 Data: TypeAlias = Annotated[
     Union[
         DataOpenAIResponseMessageOutput,
@@ -518,6 +529,7 @@ Data: TypeAlias = Annotated[
         DataOpenAIResponseOutputMessageMcpCall,
         DataOpenAIResponseOutputMessageMcpListTools,
         DataOpenAIResponseOutputMessageReasoningItem,
+        DataOpenAIResponseCompaction,
     ],
     PropertyInfo(discriminator="type"),
 ]
@@ -530,13 +542,13 @@ class ItemCreateResponse(BaseModel):
     """List of conversation items"""
 
     first_id: Optional[str] = None
-    """The ID of the first item in the list"""
+    """The ID of the first item in the list."""
 
-    has_more: Optional[bool] = None
-    """Whether there are more items available"""
+    has_more: bool
+    """Whether there are more items available."""
 
     last_id: Optional[str] = None
-    """The ID of the last item in the list"""
+    """The ID of the last item in the list."""
 
-    object: Optional[str] = None
-    """Object type"""
+    object: Optional[Literal["list"]] = None
+    """The type of object returned, must be list."""
