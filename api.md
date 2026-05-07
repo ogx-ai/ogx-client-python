@@ -97,20 +97,15 @@ Methods:
 Types:
 
 ```python
-from ogx_client.types.conversations import (
-    ItemCreateResponse,
-    ItemListResponse,
-    ItemDeleteResponse,
-    ItemGetResponse,
-)
+from ogx_client.types.conversations import ItemCreateResponse, ItemListResponse, ItemGetResponse
 ```
 
 Methods:
 
 - <code title="post /v1/conversations/{conversation_id}/items">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">create</a>(conversation_id, \*\*<a href="src/ogx_client/types/conversations/item_create_params.py">params</a>) -> <a href="./src/ogx_client/types/conversations/item_create_response.py">ItemCreateResponse</a></code>
 - <code title="get /v1/conversations/{conversation_id}/items">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">list</a>(conversation_id, \*\*<a href="src/ogx_client/types/conversations/item_list_params.py">params</a>) -> <a href="./src/ogx_client/types/conversations/item_list_response.py">SyncOpenAICursorPage[ItemListResponse]</a></code>
-- <code title="delete /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">delete</a>(item_id, \*, conversation_id) -> <a href="./src/ogx_client/types/conversations/item_delete_response.py">ItemDeleteResponse</a></code>
-- <code title="get /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">get</a>(item_id, \*, conversation_id) -> <a href="./src/ogx_client/types/conversations/item_get_response.py">ItemGetResponse</a></code>
+- <code title="delete /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">delete</a>(item_id, \*, conversation_id) -> <a href="./src/ogx_client/types/conversation_object.py">ConversationObject</a></code>
+- <code title="get /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">get</a>(item_id, \*, conversation_id, \*\*<a href="src/ogx_client/types/conversations/item_get_params.py">params</a>) -> <a href="./src/ogx_client/types/conversations/item_get_response.py">ItemGetResponse</a></code>
 
 # Inspect
 

@@ -9,12 +9,12 @@ import pytest
 
 from ogx_client import OgxClient, AsyncOgxClient
 from tests.utils import assert_matches_type
+from ogx_client.types import ConversationObject
 from ogx_client.pagination import SyncOpenAICursorPage, AsyncOpenAICursorPage
 from ogx_client.types.conversations import (
     ItemGetResponse,
     ItemListResponse,
     ItemCreateResponse,
-    ItemDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -144,7 +144,7 @@ class TestItems:
             item_id="item_id",
             conversation_id="conversation_id",
         )
-        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+        assert_matches_type(ConversationObject, item, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: OgxClient) -> None:
@@ -156,7 +156,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+        assert_matches_type(ConversationObject, item, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: OgxClient) -> None:
@@ -168,7 +168,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(ItemDeleteResponse, item, path=["response"])
+            assert_matches_type(ConversationObject, item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -191,6 +191,15 @@ class TestItems:
         item = client.conversations.items.get(
             item_id="item_id",
             conversation_id="conversation_id",
+        )
+        assert_matches_type(ItemGetResponse, item, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: OgxClient) -> None:
+        item = client.conversations.items.get(
+            item_id="item_id",
+            conversation_id="conversation_id",
+            include=["web_search_call.action.sources"],
         )
         assert_matches_type(ItemGetResponse, item, path=["response"])
 
@@ -361,7 +370,7 @@ class TestAsyncItems:
             item_id="item_id",
             conversation_id="conversation_id",
         )
-        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+        assert_matches_type(ConversationObject, item, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncOgxClient) -> None:
@@ -373,7 +382,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+        assert_matches_type(ConversationObject, item, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncOgxClient) -> None:
@@ -385,7 +394,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(ItemDeleteResponse, item, path=["response"])
+            assert_matches_type(ConversationObject, item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -408,6 +417,15 @@ class TestAsyncItems:
         item = await async_client.conversations.items.get(
             item_id="item_id",
             conversation_id="conversation_id",
+        )
+        assert_matches_type(ItemGetResponse, item, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncOgxClient) -> None:
+        item = await async_client.conversations.items.get(
+            item_id="item_id",
+            conversation_id="conversation_id",
+            include=["web_search_call.action.sources"],
         )
         assert_matches_type(ItemGetResponse, item, path=["response"])
 
