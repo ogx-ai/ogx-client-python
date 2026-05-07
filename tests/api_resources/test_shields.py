@@ -21,16 +21,19 @@ class TestShields:
 
     @parametrize
     def test_method_retrieve(self, client: OgxClient) -> None:
-        shield = client.shields.retrieve(
-            "identifier",
-        )
+        with pytest.warns(DeprecationWarning):
+            shield = client.shields.retrieve(
+                "identifier",
+            )
+
         assert_matches_type(Shield, shield, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: OgxClient) -> None:
-        response = client.shields.with_raw_response.retrieve(
-            "identifier",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.shields.with_raw_response.retrieve(
+                "identifier",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -39,32 +42,37 @@ class TestShields:
 
     @parametrize
     def test_streaming_response_retrieve(self, client: OgxClient) -> None:
-        with client.shields.with_streaming_response.retrieve(
-            "identifier",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.shields.with_streaming_response.retrieve(
+                "identifier",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            shield = response.parse()
-            assert_matches_type(Shield, shield, path=["response"])
+                shield = response.parse()
+                assert_matches_type(Shield, shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_retrieve(self, client: OgxClient) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.shields.with_raw_response.retrieve(
-                "",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+                client.shields.with_raw_response.retrieve(
+                    "",
+                )
 
     @parametrize
     def test_method_list(self, client: OgxClient) -> None:
-        shield = client.shields.list()
+        with pytest.warns(DeprecationWarning):
+            shield = client.shields.list()
+
         assert_matches_type(ShieldListResponse, shield, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: OgxClient) -> None:
-        response = client.shields.with_raw_response.list()
+        with pytest.warns(DeprecationWarning):
+            response = client.shields.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -73,12 +81,13 @@ class TestShields:
 
     @parametrize
     def test_streaming_response_list(self, client: OgxClient) -> None:
-        with client.shields.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.shields.with_streaming_response.list() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            shield = response.parse()
-            assert_matches_type(ShieldListResponse, shield, path=["response"])
+                shield = response.parse()
+                assert_matches_type(ShieldListResponse, shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -180,16 +189,19 @@ class TestAsyncShields:
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncOgxClient) -> None:
-        shield = await async_client.shields.retrieve(
-            "identifier",
-        )
+        with pytest.warns(DeprecationWarning):
+            shield = await async_client.shields.retrieve(
+                "identifier",
+            )
+
         assert_matches_type(Shield, shield, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncOgxClient) -> None:
-        response = await async_client.shields.with_raw_response.retrieve(
-            "identifier",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.shields.with_raw_response.retrieve(
+                "identifier",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -198,32 +210,37 @@ class TestAsyncShields:
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncOgxClient) -> None:
-        async with async_client.shields.with_streaming_response.retrieve(
-            "identifier",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.shields.with_streaming_response.retrieve(
+                "identifier",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            shield = await response.parse()
-            assert_matches_type(Shield, shield, path=["response"])
+                shield = await response.parse()
+                assert_matches_type(Shield, shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncOgxClient) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.shields.with_raw_response.retrieve(
-                "",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+                await async_client.shields.with_raw_response.retrieve(
+                    "",
+                )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncOgxClient) -> None:
-        shield = await async_client.shields.list()
+        with pytest.warns(DeprecationWarning):
+            shield = await async_client.shields.list()
+
         assert_matches_type(ShieldListResponse, shield, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncOgxClient) -> None:
-        response = await async_client.shields.with_raw_response.list()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.shields.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -232,12 +249,13 @@ class TestAsyncShields:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncOgxClient) -> None:
-        async with async_client.shields.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.shields.with_streaming_response.list() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            shield = await response.parse()
-            assert_matches_type(ShieldListResponse, shield, path=["response"])
+                shield = await response.parse()
+                assert_matches_type(ShieldListResponse, shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
