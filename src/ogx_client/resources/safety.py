@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 
 import httpx
@@ -45,6 +46,7 @@ class SafetyResource(SyncAPIResource):
         """
         return SafetyResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def run_shield(
         self,
         *,
@@ -111,6 +113,7 @@ class AsyncSafetyResource(AsyncAPIResource):
         """
         return AsyncSafetyResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def run_shield(
         self,
         *,
@@ -159,8 +162,10 @@ class SafetyResourceWithRawResponse:
     def __init__(self, safety: SafetyResource) -> None:
         self._safety = safety
 
-        self.run_shield = to_raw_response_wrapper(
-            safety.run_shield,
+        self.run_shield = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                safety.run_shield,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -168,8 +173,10 @@ class AsyncSafetyResourceWithRawResponse:
     def __init__(self, safety: AsyncSafetyResource) -> None:
         self._safety = safety
 
-        self.run_shield = async_to_raw_response_wrapper(
-            safety.run_shield,
+        self.run_shield = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                safety.run_shield,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -177,8 +184,10 @@ class SafetyResourceWithStreamingResponse:
     def __init__(self, safety: SafetyResource) -> None:
         self._safety = safety
 
-        self.run_shield = to_streamed_response_wrapper(
-            safety.run_shield,
+        self.run_shield = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                safety.run_shield,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -186,6 +195,8 @@ class AsyncSafetyResourceWithStreamingResponse:
     def __init__(self, safety: AsyncSafetyResource) -> None:
         self._safety = safety
 
-        self.run_shield = async_to_streamed_response_wrapper(
-            safety.run_shield,
+        self.run_shield = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                safety.run_shield,  # pyright: ignore[reportDeprecated],
+            )
         )

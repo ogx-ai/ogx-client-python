@@ -46,6 +46,7 @@ class ShieldsResource(SyncAPIResource):
         """
         return ShieldsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def retrieve(
         self,
         identifier: str,
@@ -81,6 +82,7 @@ class ShieldsResource(SyncAPIResource):
             cast_to=Shield,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -214,6 +216,7 @@ class AsyncShieldsResource(AsyncAPIResource):
         """
         return AsyncShieldsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def retrieve(
         self,
         identifier: str,
@@ -249,6 +252,7 @@ class AsyncShieldsResource(AsyncAPIResource):
             cast_to=Shield,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def list(
         self,
         *,
@@ -366,11 +370,15 @@ class ShieldsResourceWithRawResponse:
     def __init__(self, shields: ShieldsResource) -> None:
         self._shields = shields
 
-        self.retrieve = to_raw_response_wrapper(
-            shields.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                shields.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            shields.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                shields.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -388,11 +396,15 @@ class AsyncShieldsResourceWithRawResponse:
     def __init__(self, shields: AsyncShieldsResource) -> None:
         self._shields = shields
 
-        self.retrieve = async_to_raw_response_wrapper(
-            shields.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                shields.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            shields.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                shields.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -410,11 +422,15 @@ class ShieldsResourceWithStreamingResponse:
     def __init__(self, shields: ShieldsResource) -> None:
         self._shields = shields
 
-        self.retrieve = to_streamed_response_wrapper(
-            shields.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                shields.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            shields.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                shields.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -432,11 +448,15 @@ class AsyncShieldsResourceWithStreamingResponse:
     def __init__(self, shields: AsyncShieldsResource) -> None:
         self._shields = shields
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            shields.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                shields.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            shields.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                shields.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
