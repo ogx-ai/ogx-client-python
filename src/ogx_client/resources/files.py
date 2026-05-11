@@ -53,7 +53,7 @@ class FilesResource(SyncAPIResource):
         self,
         *,
         file: FileTypes,
-        purpose: Literal["assistants", "batch"],
+        purpose: Literal["assistants", "batch", "fine-tune", "vision", "user_data", "evals"],
         expires_after: Optional[file_create_params.ExpiresAfter] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -144,7 +144,20 @@ class FilesResource(SyncAPIResource):
         after: Optional[str] | Omit = omit,
         limit: Optional[int] | Omit = omit,
         order: Optional[Literal["asc", "desc"]] | Omit = omit,
-        purpose: Optional[Literal["assistants", "batch"]] | Omit = omit,
+        purpose: Optional[
+            Literal[
+                "assistants",
+                "assistants_output",
+                "batch",
+                "batch_output",
+                "evals",
+                "fine-tune",
+                "fine-tune-results",
+                "vision",
+                "user_data",
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,7 +304,7 @@ class AsyncFilesResource(AsyncAPIResource):
         self,
         *,
         file: FileTypes,
-        purpose: Literal["assistants", "batch"],
+        purpose: Literal["assistants", "batch", "fine-tune", "vision", "user_data", "evals"],
         expires_after: Optional[file_create_params.ExpiresAfter] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -382,7 +395,20 @@ class AsyncFilesResource(AsyncAPIResource):
         after: Optional[str] | Omit = omit,
         limit: Optional[int] | Omit = omit,
         order: Optional[Literal["asc", "desc"]] | Omit = omit,
-        purpose: Optional[Literal["assistants", "batch"]] | Omit = omit,
+        purpose: Optional[
+            Literal[
+                "assistants",
+                "assistants_output",
+                "batch",
+                "batch_output",
+                "evals",
+                "fine-tune",
+                "fine-tune-results",
+                "vision",
+                "user_data",
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

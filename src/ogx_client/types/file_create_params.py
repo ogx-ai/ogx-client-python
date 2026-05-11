@@ -14,7 +14,7 @@ class FileCreateParams(TypedDict, total=False):
     file: Required[FileTypes]
     """The file to upload."""
 
-    purpose: Required[Literal["assistants", "batch"]]
+    purpose: Required[Literal["assistants", "batch", "fine-tune", "vision", "user_data", "evals"]]
     """The intended purpose of the uploaded file."""
 
     expires_after: Optional[ExpiresAfter]
