@@ -23,21 +23,31 @@ class File(BaseModel):
     filename: str
     """The name of the file."""
 
-    purpose: Literal["assistants", "batch"]
+    purpose: Literal[
+        "assistants",
+        "assistants_output",
+        "batch",
+        "batch_output",
+        "evals",
+        "fine-tune",
+        "fine-tune-results",
+        "vision",
+        "user_data",
+    ]
     """The intended purpose of the file."""
 
     status: Literal["uploaded", "processed", "error"]
     """Deprecated. The current status of the file."""
 
-    status_details: str
+    expires_at: Optional[int] = None
+    """The Unix timestamp (in seconds) for when the file will expire."""
+
+    object: Optional[Literal["file"]] = None
+    """The object type, which is always 'file'."""
+
+    status_details: Optional[str] = None
     """Deprecated.
 
     For details on why a fine-tuning training file failed validation, see the error
     field on fine_tuning.job.
     """
-
-    expires_at: Optional[int] = None
-    """The Unix timestamp (in seconds) for when the file expires."""
-
-    object: Optional[Literal["file"]] = None
-    """The object type, which is always 'file'."""

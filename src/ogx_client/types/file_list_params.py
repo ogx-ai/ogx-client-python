@@ -18,5 +18,17 @@ class FileListParams(TypedDict, total=False):
     order: Optional[Literal["asc", "desc"]]
     """Sort order by created_at timestamp ('asc' or 'desc')."""
 
-    purpose: Optional[Literal["assistants", "batch"]]
+    purpose: Optional[
+        Literal[
+            "assistants",
+            "assistants_output",
+            "batch",
+            "batch_output",
+            "evals",
+            "fine-tune",
+            "fine-tune-results",
+            "vision",
+            "user_data",
+        ]
+    ]
     """Filter files by purpose."""
