@@ -1,6 +1,6 @@
 [project]
 name = "ogx_client"
-version = "0.8.0-alpha.1"
+version = "0.8.0-alpha.2"
 description = "The official Python library for the ogx-client API"
 dynamic = ["readme"]
 license = "MIT"
