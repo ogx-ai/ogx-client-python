@@ -63,7 +63,7 @@ class CompletionsResource(SyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -99,7 +99,7 @@ class CompletionsResource(SyncAPIResource):
 
           logit_bias: The logit bias to use.
 
-          logprobs: The log probabilities to use.
+          logprobs: Include the log probabilities on the logprobs most likely output tokens.
 
           max_tokens: The maximum number of tokens to generate.
 
@@ -144,7 +144,7 @@ class CompletionsResource(SyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -181,7 +181,7 @@ class CompletionsResource(SyncAPIResource):
 
           logit_bias: The logit bias to use.
 
-          logprobs: The log probabilities to use.
+          logprobs: Include the log probabilities on the logprobs most likely output tokens.
 
           max_tokens: The maximum number of tokens to generate.
 
@@ -224,7 +224,7 @@ class CompletionsResource(SyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -261,7 +261,7 @@ class CompletionsResource(SyncAPIResource):
 
           logit_bias: The logit bias to use.
 
-          logprobs: The log probabilities to use.
+          logprobs: Include the log probabilities on the logprobs most likely output tokens.
 
           max_tokens: The maximum number of tokens to generate.
 
@@ -303,7 +303,7 @@ class CompletionsResource(SyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -396,7 +396,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -432,7 +432,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           logit_bias: The logit bias to use.
 
-          logprobs: The log probabilities to use.
+          logprobs: Include the log probabilities on the logprobs most likely output tokens.
 
           max_tokens: The maximum number of tokens to generate.
 
@@ -477,7 +477,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -514,7 +514,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           logit_bias: The logit bias to use.
 
-          logprobs: The log probabilities to use.
+          logprobs: Include the log probabilities on the logprobs most likely output tokens.
 
           max_tokens: The maximum number of tokens to generate.
 
@@ -557,7 +557,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
@@ -594,7 +594,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           logit_bias: The logit bias to use.
 
-          logprobs: The log probabilities to use.
+          logprobs: Include the log probabilities on the logprobs most likely output tokens.
 
           max_tokens: The maximum number of tokens to generate.
 
@@ -636,7 +636,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         echo: Optional[bool] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
         logit_bias: Optional[Dict[str, float]] | Omit = omit,
-        logprobs: Optional[bool] | Omit = omit,
+        logprobs: Optional[int] | Omit = omit,
         max_tokens: Optional[int] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
