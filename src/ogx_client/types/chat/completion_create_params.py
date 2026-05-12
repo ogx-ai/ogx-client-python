@@ -83,9 +83,6 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     response_format: Optional[ResponseFormat]
     """The response format to use."""
 
-    safety_identifier: Optional[str]
-    """A stable identifier used for safety monitoring and abuse detection."""
-
     seed: Optional[int]
     """The seed to use."""
 

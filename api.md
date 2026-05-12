@@ -10,7 +10,6 @@ from ogx_client.types import (
     ParamType,
     ProviderInfo,
     RouteInfo,
-    SafetyViolation,
     SamplingParams,
     SystemMessage,
     VersionInfo,
@@ -289,45 +288,6 @@ from ogx_client.types import RouteListResponse
 Methods:
 
 - <code title="get /v1/inspect/routes">client.routes.<a href="./src/ogx_client/resources/routes.py">list</a>(\*\*<a href="src/ogx_client/types/route_list_params.py">params</a>) -> <a href="./src/ogx_client/types/route_list_response.py">RouteListResponse</a></code>
-
-# Moderations
-
-Types:
-
-```python
-from ogx_client.types import CreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/moderations">client.moderations.<a href="./src/ogx_client/resources/moderations.py">create</a>(\*\*<a href="src/ogx_client/types/moderation_create_params.py">params</a>) -> <a href="./src/ogx_client/types/create_response.py">CreateResponse</a></code>
-
-# Safety
-
-Types:
-
-```python
-from ogx_client.types import RunShieldResponse
-```
-
-Methods:
-
-- <code title="post /v1/safety/run-shield">client.safety.<a href="./src/ogx_client/resources/safety.py">run_shield</a>(\*\*<a href="src/ogx_client/types/safety_run_shield_params.py">params</a>) -> <a href="./src/ogx_client/types/run_shield_response.py">RunShieldResponse</a></code>
-
-# Shields
-
-Types:
-
-```python
-from ogx_client.types import ListShieldsResponse, Shield, ShieldListResponse
-```
-
-Methods:
-
-- <code title="get /v1/shields/{identifier}">client.shields.<a href="./src/ogx_client/resources/shields.py">retrieve</a>(identifier) -> <a href="./src/ogx_client/types/shield.py">Shield</a></code>
-- <code title="get /v1/shields">client.shields.<a href="./src/ogx_client/resources/shields.py">list</a>() -> <a href="./src/ogx_client/types/shield_list_response.py">ShieldListResponse</a></code>
-- <code title="delete /v1/shields/{identifier}">client.shields.<a href="./src/ogx_client/resources/shields.py">delete</a>(identifier) -> None</code>
-- <code title="post /v1/shields">client.shields.<a href="./src/ogx_client/resources/shields.py">register</a>(\*\*<a href="src/ogx_client/types/shield_register_params.py">params</a>) -> <a href="./src/ogx_client/types/shield.py">Shield</a></code>
 
 # Files
 
