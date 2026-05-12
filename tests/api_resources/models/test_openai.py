@@ -9,7 +9,7 @@ import pytest
 
 from ogx_client import OgxClient, AsyncOgxClient
 from tests.utils import assert_matches_type
-from ogx_client.types import ListModelsResponse
+from ogx_client.types.models import OpenAIListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,20 @@ class TestOpenAI:
     @parametrize
     def test_method_list(self, client: OgxClient) -> None:
         openai = client.models.openai.list()
-        assert_matches_type(ListModelsResponse, openai, path=["response"])
+        assert_matches_type(OpenAIListResponse, openai, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: OgxClient) -> None:
+        openai = client.models.openai.list(
+            after_id="after_id",
+            before_id="before_id",
+            limit=1,
+            anthropic_version="anthropic-version",
+            x_goog_api_client="x-goog-api-client",
+            x_goog_api_key="x-goog-api-key",
+            x_goog_user_project="x-goog-user-project",
+        )
+        assert_matches_type(OpenAIListResponse, openai, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: OgxClient) -> None:
@@ -29,7 +42,7 @@ class TestOpenAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         openai = response.parse()
-        assert_matches_type(ListModelsResponse, openai, path=["response"])
+        assert_matches_type(OpenAIListResponse, openai, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: OgxClient) -> None:
@@ -38,7 +51,7 @@ class TestOpenAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             openai = response.parse()
-            assert_matches_type(ListModelsResponse, openai, path=["response"])
+            assert_matches_type(OpenAIListResponse, openai, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -51,7 +64,20 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_list(self, async_client: AsyncOgxClient) -> None:
         openai = await async_client.models.openai.list()
-        assert_matches_type(ListModelsResponse, openai, path=["response"])
+        assert_matches_type(OpenAIListResponse, openai, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncOgxClient) -> None:
+        openai = await async_client.models.openai.list(
+            after_id="after_id",
+            before_id="before_id",
+            limit=1,
+            anthropic_version="anthropic-version",
+            x_goog_api_client="x-goog-api-client",
+            x_goog_api_key="x-goog-api-key",
+            x_goog_user_project="x-goog-user-project",
+        )
+        assert_matches_type(OpenAIListResponse, openai, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncOgxClient) -> None:
@@ -60,7 +86,7 @@ class TestAsyncOpenAI:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         openai = await response.parse()
-        assert_matches_type(ListModelsResponse, openai, path=["response"])
+        assert_matches_type(OpenAIListResponse, openai, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncOgxClient) -> None:
@@ -69,6 +95,6 @@ class TestAsyncOpenAI:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             openai = await response.parse()
-            assert_matches_type(ListModelsResponse, openai, path=["response"])
+            assert_matches_type(OpenAIListResponse, openai, path=["response"])
 
         assert cast(Any, response.is_closed) is True

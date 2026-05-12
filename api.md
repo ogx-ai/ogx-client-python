@@ -250,19 +250,25 @@ Methods:
 Types:
 
 ```python
-from ogx_client.types import ListModelsResponse, Model, ModelRetrieveResponse
+from ogx_client.types import ListModelsResponse, Model, ModelRetrieveResponse, ModelListResponse
 ```
 
 Methods:
 
 - <code title="get /v1/models/{model_id}">client.models.<a href="./src/ogx_client/resources/models/models.py">retrieve</a>(model_id) -> <a href="./src/ogx_client/types/model_retrieve_response.py">ModelRetrieveResponse</a></code>
-- <code title="get /v1/models">client.models.<a href="./src/ogx_client/resources/models/models.py">list</a>() -> <a href="./src/ogx_client/types/list_models_response.py">ListModelsResponse</a></code>
+- <code title="get /v1/models">client.models.<a href="./src/ogx_client/resources/models/models.py">list</a>(\*\*<a href="src/ogx_client/types/model_list_params.py">params</a>) -> <a href="./src/ogx_client/types/model_list_response.py">ModelListResponse</a></code>
 
 ## OpenAI
 
+Types:
+
+```python
+from ogx_client.types.models import OpenAIListResponse
+```
+
 Methods:
 
-- <code title="get /v1/models">client.models.openai.<a href="./src/ogx_client/resources/models/openai.py">list</a>() -> <a href="./src/ogx_client/types/list_models_response.py">ListModelsResponse</a></code>
+- <code title="get /v1/models">client.models.openai.<a href="./src/ogx_client/resources/models/openai.py">list</a>(\*\*<a href="src/ogx_client/types/models/openai_list_params.py">params</a>) -> <a href="./src/ogx_client/types/models/openai_list_response.py">OpenAIListResponse</a></code>
 
 # Providers
 
