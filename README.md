@@ -29,8 +29,7 @@ from ogx_client import OgxClient
 
 client = OgxClient()
 
-list_models_response = client.models.list()
-print(list_models_response.data)
+models = client.models.list()
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -50,8 +49,7 @@ client = AsyncOgxClient()
 
 
 async def main() -> None:
-    list_models_response = await client.models.list()
-    print(list_models_response.data)
+    models = await client.models.list()
 
 
 asyncio.run(main())
@@ -82,8 +80,7 @@ async def main() -> None:
     async with AsyncOgxClient(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        list_models_response = await client.models.list()
-        print(list_models_response.data)
+        models = await client.models.list()
 
 
 asyncio.run(main())
