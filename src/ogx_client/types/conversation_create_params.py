@@ -42,6 +42,7 @@ __all__ = [
     "ItemOpenAIResponseOutputMessageReasoningItem",
     "ItemOpenAIResponseOutputMessageReasoningItemSummary",
     "ItemOpenAIResponseOutputMessageReasoningItemContent",
+    "ItemOpenAIResponseCompaction",
 ]
 
 
@@ -505,6 +506,16 @@ class ItemOpenAIResponseOutputMessageReasoningItem(TypedDict, total=False):
     """The type identifier, always 'reasoning'."""
 
 
+class ItemOpenAIResponseCompaction(TypedDict, total=False):
+    """A compaction item that summarizes prior conversation context."""
+
+    encrypted_content: Required[str]
+
+    id: Optional[str]
+
+    type: Literal["compaction"]
+
+
 Item: TypeAlias = Union[
     ItemOpenAIResponseMessageInput,
     ItemOpenAIResponseOutputMessageWebSearchToolCall,
@@ -516,4 +527,5 @@ Item: TypeAlias = Union[
     ItemOpenAIResponseOutputMessageMcpCall,
     ItemOpenAIResponseOutputMessageMcpListTools,
     ItemOpenAIResponseOutputMessageReasoningItem,
+    ItemOpenAIResponseCompaction,
 ]

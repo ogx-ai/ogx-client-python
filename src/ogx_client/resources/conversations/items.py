@@ -19,11 +19,11 @@ from ..._response import (
 )
 from ...pagination import SyncOpenAICursorPage, AsyncOpenAICursorPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.conversations import item_list_params, item_create_params
+from ...types.conversations import item_get_params, item_list_params, item_create_params
+from ...types.conversation_object import ConversationObject
 from ...types.conversations.item_get_response import ItemGetResponse
 from ...types.conversations.item_list_response import ItemListResponse
 from ...types.conversations.item_create_response import ItemCreateResponse
-from ...types.conversations.item_delete_response import ItemDeleteResponse
 
 __all__ = ["ItemsResource", "AsyncItemsResource"]
 
@@ -166,7 +166,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ItemDeleteResponse:
+    ) -> ConversationObject:
         """
         Delete a conversation item.
 
@@ -194,7 +194,7 @@ class ItemsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemDeleteResponse,
+            cast_to=ConversationObject,
         )
 
     def get(
@@ -202,6 +202,20 @@ class ItemsResource(SyncAPIResource):
         item_id: str,
         *,
         conversation_id: str,
+        include: Optional[
+            List[
+                Literal[
+                    "web_search_call.action.sources",
+                    "code_interpreter_call.outputs",
+                    "computer_call_output.output.image_url",
+                    "file_search_call.results",
+                    "message.input_image.image_url",
+                    "message.output_text.logprobs",
+                    "reasoning.encrypted_content",
+                ]
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,7 +252,11 @@ class ItemsResource(SyncAPIResource):
                     item_id=item_id,
                 ),
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"include": include}, item_get_params.ItemGetParams),
                 ),
                 cast_to=cast(Any, ItemGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -383,7 +401,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ItemDeleteResponse:
+    ) -> ConversationObject:
         """
         Delete a conversation item.
 
@@ -411,7 +429,7 @@ class AsyncItemsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemDeleteResponse,
+            cast_to=ConversationObject,
         )
 
     async def get(
@@ -419,6 +437,20 @@ class AsyncItemsResource(AsyncAPIResource):
         item_id: str,
         *,
         conversation_id: str,
+        include: Optional[
+            List[
+                Literal[
+                    "web_search_call.action.sources",
+                    "code_interpreter_call.outputs",
+                    "computer_call_output.output.image_url",
+                    "file_search_call.results",
+                    "message.input_image.image_url",
+                    "message.output_text.logprobs",
+                    "reasoning.encrypted_content",
+                ]
+            ]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,7 +487,11 @@ class AsyncItemsResource(AsyncAPIResource):
                     item_id=item_id,
                 ),
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"include": include}, item_get_params.ItemGetParams),
                 ),
                 cast_to=cast(Any, ItemGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),

@@ -10,7 +10,6 @@ from ogx_client.types import (
     ParamType,
     ProviderInfo,
     RouteInfo,
-    SafetyViolation,
     SamplingParams,
     SystemMessage,
     VersionInfo,
@@ -97,20 +96,15 @@ Methods:
 Types:
 
 ```python
-from ogx_client.types.conversations import (
-    ItemCreateResponse,
-    ItemListResponse,
-    ItemDeleteResponse,
-    ItemGetResponse,
-)
+from ogx_client.types.conversations import ItemCreateResponse, ItemListResponse, ItemGetResponse
 ```
 
 Methods:
 
 - <code title="post /v1/conversations/{conversation_id}/items">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">create</a>(conversation_id, \*\*<a href="src/ogx_client/types/conversations/item_create_params.py">params</a>) -> <a href="./src/ogx_client/types/conversations/item_create_response.py">ItemCreateResponse</a></code>
 - <code title="get /v1/conversations/{conversation_id}/items">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">list</a>(conversation_id, \*\*<a href="src/ogx_client/types/conversations/item_list_params.py">params</a>) -> <a href="./src/ogx_client/types/conversations/item_list_response.py">SyncOpenAICursorPage[ItemListResponse]</a></code>
-- <code title="delete /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">delete</a>(item_id, \*, conversation_id) -> <a href="./src/ogx_client/types/conversations/item_delete_response.py">ItemDeleteResponse</a></code>
-- <code title="get /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">get</a>(item_id, \*, conversation_id) -> <a href="./src/ogx_client/types/conversations/item_get_response.py">ItemGetResponse</a></code>
+- <code title="delete /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">delete</a>(item_id, \*, conversation_id) -> <a href="./src/ogx_client/types/conversation_object.py">ConversationObject</a></code>
+- <code title="get /v1/conversations/{conversation_id}/items/{item_id}">client.conversations.items.<a href="./src/ogx_client/resources/conversations/items.py">get</a>(item_id, \*, conversation_id, \*\*<a href="src/ogx_client/types/conversations/item_get_params.py">params</a>) -> <a href="./src/ogx_client/types/conversations/item_get_response.py">ItemGetResponse</a></code>
 
 # Inspect
 
@@ -153,9 +147,21 @@ from ogx_client.types.chat import (
 
 Methods:
 
-- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions.py">create</a>(\*\*<a href="src/ogx_client/types/chat/completion_create_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
-- <code title="get /v1/chat/completions/{completion_id}">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions.py">retrieve</a>(completion_id) -> <a href="./src/ogx_client/types/chat/completion_retrieve_response.py">CompletionRetrieveResponse</a></code>
-- <code title="get /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions.py">list</a>(\*\*<a href="src/ogx_client/types/chat/completion_list_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_list_response.py">CompletionListResponse</a></code>
+- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions/completions.py">create</a>(\*\*<a href="src/ogx_client/types/chat/completion_create_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+- <code title="get /v1/chat/completions/{completion_id}">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions/completions.py">retrieve</a>(completion_id) -> <a href="./src/ogx_client/types/chat/completion_retrieve_response.py">CompletionRetrieveResponse</a></code>
+- <code title="get /v1/chat/completions">client.chat.completions.<a href="./src/ogx_client/resources/chat/completions/completions.py">list</a>(\*\*<a href="src/ogx_client/types/chat/completion_list_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completion_list_response.py">CompletionListResponse</a></code>
+
+### Messages
+
+Types:
+
+```python
+from ogx_client.types.chat.completions import MessageListResponse
+```
+
+Methods:
+
+- <code title="get /v1/chat/completions/{completion_id}/messages">client.chat.completions.messages.<a href="./src/ogx_client/resources/chat/completions/messages.py">list</a>(completion_id, \*\*<a href="src/ogx_client/types/chat/completions/message_list_params.py">params</a>) -> <a href="./src/ogx_client/types/chat/completions/message_list_response.py">SyncOpenAICursorPage[MessageListResponse]</a></code>
 
 # Completions
 
@@ -244,19 +250,25 @@ Methods:
 Types:
 
 ```python
-from ogx_client.types import ListModelsResponse, Model, ModelRetrieveResponse
+from ogx_client.types import ListModelsResponse, Model, ModelRetrieveResponse, ModelListResponse
 ```
 
 Methods:
 
 - <code title="get /v1/models/{model_id}">client.models.<a href="./src/ogx_client/resources/models/models.py">retrieve</a>(model_id) -> <a href="./src/ogx_client/types/model_retrieve_response.py">ModelRetrieveResponse</a></code>
-- <code title="get /v1/models">client.models.<a href="./src/ogx_client/resources/models/models.py">list</a>() -> <a href="./src/ogx_client/types/list_models_response.py">ListModelsResponse</a></code>
+- <code title="get /v1/models">client.models.<a href="./src/ogx_client/resources/models/models.py">list</a>(\*\*<a href="src/ogx_client/types/model_list_params.py">params</a>) -> <a href="./src/ogx_client/types/model_list_response.py">ModelListResponse</a></code>
 
 ## OpenAI
 
+Types:
+
+```python
+from ogx_client.types.models import OpenAIListResponse
+```
+
 Methods:
 
-- <code title="get /v1/models">client.models.openai.<a href="./src/ogx_client/resources/models/openai.py">list</a>() -> <a href="./src/ogx_client/types/list_models_response.py">ListModelsResponse</a></code>
+- <code title="get /v1/models">client.models.openai.<a href="./src/ogx_client/resources/models/openai.py">list</a>(\*\*<a href="src/ogx_client/types/models/openai_list_params.py">params</a>) -> <a href="./src/ogx_client/types/models/openai_list_response.py">OpenAIListResponse</a></code>
 
 # Providers
 
@@ -282,45 +294,6 @@ from ogx_client.types import RouteListResponse
 Methods:
 
 - <code title="get /v1/inspect/routes">client.routes.<a href="./src/ogx_client/resources/routes.py">list</a>(\*\*<a href="src/ogx_client/types/route_list_params.py">params</a>) -> <a href="./src/ogx_client/types/route_list_response.py">RouteListResponse</a></code>
-
-# Moderations
-
-Types:
-
-```python
-from ogx_client.types import CreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/moderations">client.moderations.<a href="./src/ogx_client/resources/moderations.py">create</a>(\*\*<a href="src/ogx_client/types/moderation_create_params.py">params</a>) -> <a href="./src/ogx_client/types/create_response.py">CreateResponse</a></code>
-
-# Safety
-
-Types:
-
-```python
-from ogx_client.types import RunShieldResponse
-```
-
-Methods:
-
-- <code title="post /v1/safety/run-shield">client.safety.<a href="./src/ogx_client/resources/safety.py">run_shield</a>(\*\*<a href="src/ogx_client/types/safety_run_shield_params.py">params</a>) -> <a href="./src/ogx_client/types/run_shield_response.py">RunShieldResponse</a></code>
-
-# Shields
-
-Types:
-
-```python
-from ogx_client.types import ListShieldsResponse, Shield, ShieldListResponse
-```
-
-Methods:
-
-- <code title="get /v1/shields/{identifier}">client.shields.<a href="./src/ogx_client/resources/shields.py">retrieve</a>(identifier) -> <a href="./src/ogx_client/types/shield.py">Shield</a></code>
-- <code title="get /v1/shields">client.shields.<a href="./src/ogx_client/resources/shields.py">list</a>() -> <a href="./src/ogx_client/types/shield_list_response.py">ShieldListResponse</a></code>
-- <code title="delete /v1/shields/{identifier}">client.shields.<a href="./src/ogx_client/resources/shields.py">delete</a>(identifier) -> None</code>
-- <code title="post /v1/shields">client.shields.<a href="./src/ogx_client/resources/shields.py">register</a>(\*\*<a href="src/ogx_client/types/shield_register_params.py">params</a>) -> <a href="./src/ogx_client/types/shield.py">Shield</a></code>
 
 # Files
 

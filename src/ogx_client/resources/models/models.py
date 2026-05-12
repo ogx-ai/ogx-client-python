@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, Optional, cast
+
 import httpx
 
 from .openai import (
@@ -12,8 +14,9 @@ from .openai import (
     OpenAIResourceWithStreamingResponse,
     AsyncOpenAIResourceWithStreamingResponse,
 )
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._utils import path_template
+from ...types import model_list_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -23,7 +26,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.list_models_response import ListModelsResponse
+from ...types.model_list_response import ModelListResponse
 from ...types.model_retrieve_response import ModelRetrieveResponse
 
 __all__ = ["ModelsResource", "AsyncModelsResource"]
@@ -57,6 +60,10 @@ class ModelsResource(SyncAPIResource):
         self,
         model_id: str,
         *,
+        anthropic_version: str | Omit = omit,
+        x_goog_api_client: str | Omit = omit,
+        x_goog_api_key: str | Omit = omit,
+        x_goog_user_project: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,8 +71,10 @@ class ModelsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ModelRetrieveResponse:
-        """
-        Get a model by its identifier.
+        """Get a model by its identifier.
+
+        Returns OpenAI, Anthropic, or Google response
+        format based on SDK detection headers.
 
         Args:
           model_id: The ID of the model to get.
@@ -80,31 +89,98 @@ class ModelsResource(SyncAPIResource):
         """
         if not model_id:
             raise ValueError(f"Expected a non-empty value for `model_id` but received {model_id!r}")
-        return self._get(
-            path_template("/v1/models/{model_id}", model_id=model_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "anthropic-version": anthropic_version,
+                    "x-goog-api-client": x_goog_api_client,
+                    "x-goog-api-key": x_goog_api_key,
+                    "x-goog-user-project": x_goog_user_project,
+                }
             ),
-            cast_to=ModelRetrieveResponse,
+            **(extra_headers or {}),
+        }
+        return cast(
+            ModelRetrieveResponse,
+            self._get(
+                path_template("/v1/models/{model_id}", model_id=model_id),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, ModelRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     def list(
         self,
         *,
+        after_id: Optional[str] | Omit = omit,
+        before_id: Optional[str] | Omit = omit,
+        limit: Optional[int] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_goog_api_client: str | Omit = omit,
+        x_goog_api_key: str | Omit = omit,
+        x_goog_user_project: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ListModelsResponse:
-        """List models using the OpenAI API."""
-        return self._get(
-            "/v1/models",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+    ) -> ModelListResponse:
+        """List models.
+
+        Returns OpenAI, Anthropic, or Google response format based on SDK
+        detection headers.
+
+        Args:
+          after_id: Return models after this model ID (Anthropic SDK format only).
+
+          before_id: Return models before this model ID (Anthropic SDK format only).
+
+          limit: Maximum number of models to return (Anthropic SDK format only).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "anthropic-version": anthropic_version,
+                    "x-goog-api-client": x_goog_api_client,
+                    "x-goog-api-key": x_goog_api_key,
+                    "x-goog-user-project": x_goog_user_project,
+                }
             ),
-            cast_to=ListModelsResponse,
+            **(extra_headers or {}),
+        }
+        return cast(
+            ModelListResponse,
+            self._get(
+                "/v1/models",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "after_id": after_id,
+                            "before_id": before_id,
+                            "limit": limit,
+                        },
+                        model_list_params.ModelListParams,
+                    ),
+                ),
+                cast_to=cast(Any, ModelListResponse),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
 
@@ -136,6 +212,10 @@ class AsyncModelsResource(AsyncAPIResource):
         self,
         model_id: str,
         *,
+        anthropic_version: str | Omit = omit,
+        x_goog_api_client: str | Omit = omit,
+        x_goog_api_key: str | Omit = omit,
+        x_goog_user_project: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -143,8 +223,10 @@ class AsyncModelsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ModelRetrieveResponse:
-        """
-        Get a model by its identifier.
+        """Get a model by its identifier.
+
+        Returns OpenAI, Anthropic, or Google response
+        format based on SDK detection headers.
 
         Args:
           model_id: The ID of the model to get.
@@ -159,31 +241,98 @@ class AsyncModelsResource(AsyncAPIResource):
         """
         if not model_id:
             raise ValueError(f"Expected a non-empty value for `model_id` but received {model_id!r}")
-        return await self._get(
-            path_template("/v1/models/{model_id}", model_id=model_id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "anthropic-version": anthropic_version,
+                    "x-goog-api-client": x_goog_api_client,
+                    "x-goog-api-key": x_goog_api_key,
+                    "x-goog-user-project": x_goog_user_project,
+                }
             ),
-            cast_to=ModelRetrieveResponse,
+            **(extra_headers or {}),
+        }
+        return cast(
+            ModelRetrieveResponse,
+            await self._get(
+                path_template("/v1/models/{model_id}", model_id=model_id),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, ModelRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     async def list(
         self,
         *,
+        after_id: Optional[str] | Omit = omit,
+        before_id: Optional[str] | Omit = omit,
+        limit: Optional[int] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_goog_api_client: str | Omit = omit,
+        x_goog_api_key: str | Omit = omit,
+        x_goog_user_project: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ListModelsResponse:
-        """List models using the OpenAI API."""
-        return await self._get(
-            "/v1/models",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+    ) -> ModelListResponse:
+        """List models.
+
+        Returns OpenAI, Anthropic, or Google response format based on SDK
+        detection headers.
+
+        Args:
+          after_id: Return models after this model ID (Anthropic SDK format only).
+
+          before_id: Return models before this model ID (Anthropic SDK format only).
+
+          limit: Maximum number of models to return (Anthropic SDK format only).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "anthropic-version": anthropic_version,
+                    "x-goog-api-client": x_goog_api_client,
+                    "x-goog-api-key": x_goog_api_key,
+                    "x-goog-user-project": x_goog_user_project,
+                }
             ),
-            cast_to=ListModelsResponse,
+            **(extra_headers or {}),
+        }
+        return cast(
+            ModelListResponse,
+            await self._get(
+                "/v1/models",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "after_id": after_id,
+                            "before_id": before_id,
+                            "limit": limit,
+                        },
+                        model_list_params.ModelListParams,
+                    ),
+                ),
+                cast_to=cast(Any, ModelListResponse),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
 

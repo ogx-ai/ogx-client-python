@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.8.0-alpha.2 (2026-05-12)
+
+Full Changelog: [v0.8.0-alpha.1...v0.8.0-alpha.2](https://github.com/ogx-ai/ogx-client-python/compare/v0.8.0-alpha.1...v0.8.0-alpha.2)
+
+### ⚠ BREAKING CHANGES
+
+* multi-SDK response shapes for /v1/models
+* remove Safety/Shields API and all connected code
+
+### Features
+
+* **conversations:** enhance OpenAI API coverage for conversations ([5de7ef0](https://github.com/ogx-ai/ogx-client-python/commit/5de7ef001ad7df1e7169c0ab9ba2ffe7e50679b4))
+* Deprecate safety shields ([821ddad](https://github.com/ogx-ai/ogx-client-python/commit/821ddad02d799b78205099fdc2552119a8bb442f))
+* **files:** enhance OpenAI API coverage for Files API ([df3e595](https://github.com/ogx-ai/ogx-client-python/commit/df3e5959597bbc95cadf3e645f062573d7b8fca7))
+* **inference:** add chat completion message listing endpoint. ([8e35bff](https://github.com/ogx-ai/ogx-client-python/commit/8e35bff7d1257c45a2a01aea8d0f267815c5f480))
+* **internal/types:** support eagerly validating pydantic iterators ([4fa7da1](https://github.com/ogx-ai/ogx-client-python/commit/4fa7da1446da5186951d7300189c7f9ada86ea82))
+* multi-SDK response shapes for /v1/models ([f736fbd](https://github.com/ogx-ai/ogx-client-python/commit/f736fbdea0573e599275e1a08fec7a9ee3051e2f))
+
+
+### Bug Fixes
+
+* change logprobs type from bool to int in Completions endpoint ([a7dc5ce](https://github.com/ogx-ai/ogx-client-python/commit/a7dc5ce5f7cd54588a630d5ea132733013406da0))
+* **client:** add missing f-string prefix in file type error message ([eb8cbcb](https://github.com/ogx-ai/ogx-client-python/commit/eb8cbcbf029f2a211bfca3271ed16b225ec70d7c))
+
+
+### Refactors
+
+* remove Safety/Shields API and all connected code ([28dc810](https://github.com/ogx-ai/ogx-client-python/commit/28dc810b065ca293b19bf1131aa0776b50198db6))
+
 ## 0.8.0-alpha.1 (2026-05-01)
 
 Full Changelog: [v0.7.2-alpha.4...v0.8.0-alpha.1](https://github.com/ogx-ai/ogx-client-python/compare/v0.7.2-alpha.4...v0.8.0-alpha.1)

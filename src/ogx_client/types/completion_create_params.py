@@ -29,8 +29,8 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     logit_bias: Optional[Dict[str, float]]
     """The logit bias to use."""
 
-    logprobs: Optional[bool]
-    """The log probabilities to use."""
+    logprobs: Optional[int]
+    """Include the log probabilities on the logprobs most likely output tokens."""
 
     max_tokens: Optional[int]
     """The maximum number of tokens to generate."""

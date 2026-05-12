@@ -40,14 +40,6 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from .safety import (
-    SafetyResource,
-    AsyncSafetyResource,
-    SafetyResourceWithRawResponse,
-    AsyncSafetyResourceWithRawResponse,
-    SafetyResourceWithStreamingResponse,
-    AsyncSafetyResourceWithStreamingResponse,
-)
 from .batches import (
     BatchesResource,
     AsyncBatchesResource,
@@ -71,14 +63,6 @@ from .prompts import (
     AsyncPromptsResourceWithRawResponse,
     PromptsResourceWithStreamingResponse,
     AsyncPromptsResourceWithStreamingResponse,
-)
-from .shields import (
-    ShieldsResource,
-    AsyncShieldsResource,
-    ShieldsResourceWithRawResponse,
-    AsyncShieldsResourceWithRawResponse,
-    ShieldsResourceWithStreamingResponse,
-    AsyncShieldsResourceWithStreamingResponse,
 )
 from .providers import (
     ProvidersResource,
@@ -119,14 +103,6 @@ from .completions import (
     AsyncCompletionsResourceWithRawResponse,
     CompletionsResourceWithStreamingResponse,
     AsyncCompletionsResourceWithStreamingResponse,
-)
-from .moderations import (
-    ModerationsResource,
-    AsyncModerationsResource,
-    ModerationsResourceWithRawResponse,
-    AsyncModerationsResourceWithRawResponse,
-    ModerationsResourceWithStreamingResponse,
-    AsyncModerationsResourceWithStreamingResponse,
 )
 from .conversations import (
     ConversationsResource,
@@ -218,24 +194,6 @@ __all__ = [
     "AsyncRoutesResourceWithRawResponse",
     "RoutesResourceWithStreamingResponse",
     "AsyncRoutesResourceWithStreamingResponse",
-    "ModerationsResource",
-    "AsyncModerationsResource",
-    "ModerationsResourceWithRawResponse",
-    "AsyncModerationsResourceWithRawResponse",
-    "ModerationsResourceWithStreamingResponse",
-    "AsyncModerationsResourceWithStreamingResponse",
-    "SafetyResource",
-    "AsyncSafetyResource",
-    "SafetyResourceWithRawResponse",
-    "AsyncSafetyResourceWithRawResponse",
-    "SafetyResourceWithStreamingResponse",
-    "AsyncSafetyResourceWithStreamingResponse",
-    "ShieldsResource",
-    "AsyncShieldsResource",
-    "ShieldsResourceWithRawResponse",
-    "AsyncShieldsResourceWithRawResponse",
-    "ShieldsResourceWithStreamingResponse",
-    "AsyncShieldsResourceWithStreamingResponse",
     "FilesResource",
     "AsyncFilesResource",
     "FilesResourceWithRawResponse",

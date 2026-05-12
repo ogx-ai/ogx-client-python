@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -18,12 +18,6 @@ class ConversationObject(BaseModel):
     """
     The time at which the conversation was created, measured in seconds since the
     Unix epoch.
-    """
-
-    items: Optional[List[Dict[str, object]]] = None
-    """Initial items to include in the conversation context.
-
-    You may add up to 20 items at a time.
     """
 
     metadata: Optional[Dict[str, str]] = None
