@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...types import response_list_params, response_create_params, response_compact_params
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -84,7 +84,6 @@ class ResponsesResource(SyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -108,7 +107,6 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Omit = omit,
@@ -145,8 +143,6 @@ class ResponsesResource(SyncAPIResource):
 
           frequency_penalty: Penalizes new tokens based on their frequency in the text so far.
 
-          guardrails: List of guardrails to apply during response generation.
-
           include: Additional fields to include in the response.
 
           instructions: Instructions to guide the model's behavior.
@@ -172,8 +168,6 @@ class ResponsesResource(SyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
-
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
 
           service_tier: The service tier for the request.
 
@@ -226,7 +220,6 @@ class ResponsesResource(SyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -250,7 +243,6 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -288,8 +280,6 @@ class ResponsesResource(SyncAPIResource):
 
           frequency_penalty: Penalizes new tokens based on their frequency in the text so far.
 
-          guardrails: List of guardrails to apply during response generation.
-
           include: Additional fields to include in the response.
 
           instructions: Instructions to guide the model's behavior.
@@ -315,8 +305,6 @@ class ResponsesResource(SyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
-
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
 
           service_tier: The service tier for the request.
 
@@ -367,7 +355,6 @@ class ResponsesResource(SyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -391,7 +378,6 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -429,8 +415,6 @@ class ResponsesResource(SyncAPIResource):
 
           frequency_penalty: Penalizes new tokens based on their frequency in the text so far.
 
-          guardrails: List of guardrails to apply during response generation.
-
           include: Additional fields to include in the response.
 
           instructions: Instructions to guide the model's behavior.
@@ -456,8 +440,6 @@ class ResponsesResource(SyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
-
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
 
           service_tier: The service tier for the request.
 
@@ -507,7 +489,6 @@ class ResponsesResource(SyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -531,7 +512,6 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Literal[True] | Omit = omit,
@@ -560,7 +540,6 @@ class ResponsesResource(SyncAPIResource):
                     "context_management": context_management,
                     "conversation": conversation,
                     "frequency_penalty": frequency_penalty,
-                    "guardrails": guardrails,
                     "include": include,
                     "instructions": instructions,
                     "max_infer_iters": max_infer_iters,
@@ -573,7 +552,6 @@ class ResponsesResource(SyncAPIResource):
                     "prompt": prompt,
                     "prompt_cache_key": prompt_cache_key,
                     "reasoning": reasoning,
-                    "safety_identifier": safety_identifier,
                     "service_tier": service_tier,
                     "store": store,
                     "stream": stream,
@@ -853,7 +831,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -877,7 +854,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Omit = omit,
@@ -914,8 +890,6 @@ class AsyncResponsesResource(AsyncAPIResource):
 
           frequency_penalty: Penalizes new tokens based on their frequency in the text so far.
 
-          guardrails: List of guardrails to apply during response generation.
-
           include: Additional fields to include in the response.
 
           instructions: Instructions to guide the model's behavior.
@@ -941,8 +915,6 @@ class AsyncResponsesResource(AsyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
-
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
 
           service_tier: The service tier for the request.
 
@@ -995,7 +967,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -1019,7 +990,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -1057,8 +1027,6 @@ class AsyncResponsesResource(AsyncAPIResource):
 
           frequency_penalty: Penalizes new tokens based on their frequency in the text so far.
 
-          guardrails: List of guardrails to apply during response generation.
-
           include: Additional fields to include in the response.
 
           instructions: Instructions to guide the model's behavior.
@@ -1084,8 +1052,6 @@ class AsyncResponsesResource(AsyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
-
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
 
           service_tier: The service tier for the request.
 
@@ -1136,7 +1102,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -1160,7 +1125,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -1198,8 +1162,6 @@ class AsyncResponsesResource(AsyncAPIResource):
 
           frequency_penalty: Penalizes new tokens based on their frequency in the text so far.
 
-          guardrails: List of guardrails to apply during response generation.
-
           include: Additional fields to include in the response.
 
           instructions: Instructions to guide the model's behavior.
@@ -1225,8 +1187,6 @@ class AsyncResponsesResource(AsyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
-
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
 
           service_tier: The service tier for the request.
 
@@ -1276,7 +1236,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         context_management: Optional[Iterable[response_create_params.ContextManagement]] | Omit = omit,
         conversation: Optional[str] | Omit = omit,
         frequency_penalty: Optional[float] | Omit = omit,
-        guardrails: Optional[SequenceNotStr[response_create_params.Guardrail]] | Omit = omit,
         include: List[
             Literal[
                 "web_search_call.action.sources",
@@ -1300,7 +1259,6 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Literal[True] | Omit = omit,
@@ -1329,7 +1287,6 @@ class AsyncResponsesResource(AsyncAPIResource):
                     "context_management": context_management,
                     "conversation": conversation,
                     "frequency_penalty": frequency_penalty,
-                    "guardrails": guardrails,
                     "include": include,
                     "instructions": instructions,
                     "max_infer_iters": max_infer_iters,
@@ -1342,7 +1299,6 @@ class AsyncResponsesResource(AsyncAPIResource):
                     "prompt": prompt,
                     "prompt_cache_key": prompt_cache_key,
                     "reasoning": reasoning,
-                    "safety_identifier": safety_identifier,
                     "service_tier": service_tier,
                     "store": store,
                     "stream": stream,

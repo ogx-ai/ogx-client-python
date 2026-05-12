@@ -1357,8 +1357,6 @@ class ResponseListResponse(BaseModel):
     Controls how much reasoning the model performs before generating a response.
     """
 
-    safety_identifier: Optional[str] = None
-
     service_tier: Optional[str] = None
 
     temperature: Optional[float] = None

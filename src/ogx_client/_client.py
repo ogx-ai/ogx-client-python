@@ -42,33 +42,27 @@ if TYPE_CHECKING:
         files,
         models,
         routes,
-        safety,
         batches,
         inspect,
         prompts,
-        shields,
         providers,
         responses,
         vector_io,
         embeddings,
         completions,
-        moderations,
         conversations,
         vector_stores,
     )
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.routes import RoutesResource, AsyncRoutesResource
-    from .resources.safety import SafetyResource, AsyncSafetyResource
     from .resources.batches import BatchesResource, AsyncBatchesResource
     from .resources.inspect import InspectResource, AsyncInspectResource
-    from .resources.shields import ShieldsResource, AsyncShieldsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.providers import ProvidersResource, AsyncProvidersResource
     from .resources.vector_io import VectorIoResource, AsyncVectorIoResource
     from .resources.embeddings import EmbeddingsResource, AsyncEmbeddingsResource
     from .resources.alpha.alpha import AlphaResource, AsyncAlphaResource
     from .resources.completions import CompletionsResource, AsyncCompletionsResource
-    from .resources.moderations import ModerationsResource, AsyncModerationsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.prompts.prompts import PromptsResource, AsyncPromptsResource
     from .resources.responses.responses import ResponsesResource, AsyncResponsesResource
@@ -255,26 +249,6 @@ class OgxClient(SyncAPIClient):
         from .resources.routes import RoutesResource
 
         return RoutesResource(self)
-
-    @cached_property
-    def moderations(self) -> ModerationsResource:
-        """OpenAI-compatible Moderations API."""
-        from .resources.moderations import ModerationsResource
-
-        return ModerationsResource(self)
-
-    @cached_property
-    def safety(self) -> SafetyResource:
-        """OpenAI-compatible Moderations API."""
-        from .resources.safety import SafetyResource
-
-        return SafetyResource(self)
-
-    @cached_property
-    def shields(self) -> ShieldsResource:
-        from .resources.shields import ShieldsResource
-
-        return ShieldsResource(self)
 
     @cached_property
     def files(self) -> FilesResource:
@@ -588,26 +562,6 @@ class AsyncOgxClient(AsyncAPIClient):
         return AsyncRoutesResource(self)
 
     @cached_property
-    def moderations(self) -> AsyncModerationsResource:
-        """OpenAI-compatible Moderations API."""
-        from .resources.moderations import AsyncModerationsResource
-
-        return AsyncModerationsResource(self)
-
-    @cached_property
-    def safety(self) -> AsyncSafetyResource:
-        """OpenAI-compatible Moderations API."""
-        from .resources.safety import AsyncSafetyResource
-
-        return AsyncSafetyResource(self)
-
-    @cached_property
-    def shields(self) -> AsyncShieldsResource:
-        from .resources.shields import AsyncShieldsResource
-
-        return AsyncShieldsResource(self)
-
-    @cached_property
     def files(self) -> AsyncFilesResource:
         """This API is used to upload documents that can be used with other OGX APIs."""
         from .resources.files import AsyncFilesResource
@@ -856,26 +810,6 @@ class OgxClientWithRawResponse:
         return RoutesResourceWithRawResponse(self._client.routes)
 
     @cached_property
-    def moderations(self) -> moderations.ModerationsResourceWithRawResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.moderations import ModerationsResourceWithRawResponse
-
-        return ModerationsResourceWithRawResponse(self._client.moderations)
-
-    @cached_property
-    def safety(self) -> safety.SafetyResourceWithRawResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.safety import SafetyResourceWithRawResponse
-
-        return SafetyResourceWithRawResponse(self._client.safety)
-
-    @cached_property
-    def shields(self) -> shields.ShieldsResourceWithRawResponse:
-        from .resources.shields import ShieldsResourceWithRawResponse
-
-        return ShieldsResourceWithRawResponse(self._client.shields)
-
-    @cached_property
     def files(self) -> files.FilesResourceWithRawResponse:
         """This API is used to upload documents that can be used with other OGX APIs."""
         from .resources.files import FilesResourceWithRawResponse
@@ -1008,26 +942,6 @@ class AsyncOgxClientWithRawResponse:
         from .resources.routes import AsyncRoutesResourceWithRawResponse
 
         return AsyncRoutesResourceWithRawResponse(self._client.routes)
-
-    @cached_property
-    def moderations(self) -> moderations.AsyncModerationsResourceWithRawResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.moderations import AsyncModerationsResourceWithRawResponse
-
-        return AsyncModerationsResourceWithRawResponse(self._client.moderations)
-
-    @cached_property
-    def safety(self) -> safety.AsyncSafetyResourceWithRawResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.safety import AsyncSafetyResourceWithRawResponse
-
-        return AsyncSafetyResourceWithRawResponse(self._client.safety)
-
-    @cached_property
-    def shields(self) -> shields.AsyncShieldsResourceWithRawResponse:
-        from .resources.shields import AsyncShieldsResourceWithRawResponse
-
-        return AsyncShieldsResourceWithRawResponse(self._client.shields)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithRawResponse:
@@ -1164,26 +1078,6 @@ class OgxClientWithStreamedResponse:
         return RoutesResourceWithStreamingResponse(self._client.routes)
 
     @cached_property
-    def moderations(self) -> moderations.ModerationsResourceWithStreamingResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.moderations import ModerationsResourceWithStreamingResponse
-
-        return ModerationsResourceWithStreamingResponse(self._client.moderations)
-
-    @cached_property
-    def safety(self) -> safety.SafetyResourceWithStreamingResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.safety import SafetyResourceWithStreamingResponse
-
-        return SafetyResourceWithStreamingResponse(self._client.safety)
-
-    @cached_property
-    def shields(self) -> shields.ShieldsResourceWithStreamingResponse:
-        from .resources.shields import ShieldsResourceWithStreamingResponse
-
-        return ShieldsResourceWithStreamingResponse(self._client.shields)
-
-    @cached_property
     def files(self) -> files.FilesResourceWithStreamingResponse:
         """This API is used to upload documents that can be used with other OGX APIs."""
         from .resources.files import FilesResourceWithStreamingResponse
@@ -1316,26 +1210,6 @@ class AsyncOgxClientWithStreamedResponse:
         from .resources.routes import AsyncRoutesResourceWithStreamingResponse
 
         return AsyncRoutesResourceWithStreamingResponse(self._client.routes)
-
-    @cached_property
-    def moderations(self) -> moderations.AsyncModerationsResourceWithStreamingResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.moderations import AsyncModerationsResourceWithStreamingResponse
-
-        return AsyncModerationsResourceWithStreamingResponse(self._client.moderations)
-
-    @cached_property
-    def safety(self) -> safety.AsyncSafetyResourceWithStreamingResponse:
-        """OpenAI-compatible Moderations API."""
-        from .resources.safety import AsyncSafetyResourceWithStreamingResponse
-
-        return AsyncSafetyResourceWithStreamingResponse(self._client.safety)
-
-    @cached_property
-    def shields(self) -> shields.AsyncShieldsResourceWithStreamingResponse:
-        from .resources.shields import AsyncShieldsResourceWithStreamingResponse
-
-        return AsyncShieldsResourceWithStreamingResponse(self._client.shields)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithStreamingResponse:

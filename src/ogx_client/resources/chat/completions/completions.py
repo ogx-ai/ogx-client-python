@@ -94,7 +94,6 @@ class CompletionsResource(SyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -148,8 +147,6 @@ class CompletionsResource(SyncAPIResource):
 
           response_format: The response format to use.
 
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
-
           seed: The seed to use.
 
           service_tier: The service tier for the request.
@@ -202,7 +199,6 @@ class CompletionsResource(SyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -257,8 +253,6 @@ class CompletionsResource(SyncAPIResource):
 
           response_format: The response format to use.
 
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
-
           seed: The seed to use.
 
           service_tier: The service tier for the request.
@@ -309,7 +303,6 @@ class CompletionsResource(SyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -364,8 +357,6 @@ class CompletionsResource(SyncAPIResource):
 
           response_format: The response format to use.
 
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
-
           seed: The seed to use.
 
           service_tier: The service tier for the request.
@@ -415,7 +406,6 @@ class CompletionsResource(SyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -453,7 +443,6 @@ class CompletionsResource(SyncAPIResource):
                     "prompt_cache_key": prompt_cache_key,
                     "reasoning_effort": reasoning_effort,
                     "response_format": response_format,
-                    "safety_identifier": safety_identifier,
                     "seed": seed,
                     "service_tier": service_tier,
                     "stop": stop,
@@ -626,7 +615,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -680,8 +668,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           response_format: The response format to use.
 
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
-
           seed: The seed to use.
 
           service_tier: The service tier for the request.
@@ -734,7 +720,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -789,8 +774,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           response_format: The response format to use.
 
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
-
           seed: The seed to use.
 
           service_tier: The service tier for the request.
@@ -841,7 +824,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -896,8 +878,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           response_format: The response format to use.
 
-          safety_identifier: A stable identifier used for safety monitoring and abuse detection.
-
           seed: The seed to use.
 
           service_tier: The service tier for the request.
@@ -947,7 +927,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         response_format: Optional[completion_create_params.ResponseFormat] | Omit = omit,
-        safety_identifier: Optional[str] | Omit = omit,
         seed: Optional[int] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         stop: Union[str, SequenceNotStr[str], None] | Omit = omit,
@@ -985,7 +964,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
                     "prompt_cache_key": prompt_cache_key,
                     "reasoning_effort": reasoning_effort,
                     "response_format": response_format,
-                    "safety_identifier": safety_identifier,
                     "seed": seed,
                     "service_tier": service_tier,
                     "stop": stop,

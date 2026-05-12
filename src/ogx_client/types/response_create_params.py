@@ -44,8 +44,6 @@ __all__ = [
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseMcpApprovalResponse",
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseCompaction",
     "ContextManagement",
-    "Guardrail",
-    "GuardrailResponseGuardrailSpec",
     "Prompt",
     "PromptVariables",
     "PromptVariablesOpenAIResponseInputMessageContentText",
@@ -103,9 +101,6 @@ class ResponseCreateParamsBase(TypedDict, total=False):
     frequency_penalty: Optional[float]
     """Penalizes new tokens based on their frequency in the text so far."""
 
-    guardrails: Optional[SequenceNotStr[Guardrail]]
-    """List of guardrails to apply during response generation."""
-
     include: List[
         Literal[
             "web_search_call.action.sources",
@@ -156,9 +151,6 @@ class ResponseCreateParamsBase(TypedDict, total=False):
 
     Controls how much reasoning the model performs before generating a response.
     """
-
-    safety_identifier: Optional[str]
-    """A stable identifier used for safety monitoring and abuse detection."""
 
     service_tier: Optional[Literal["auto", "default", "flex", "priority"]]
     """The service tier for the request."""
@@ -731,15 +723,6 @@ class ContextManagement(TypedDict, total=False):
 
     compact_threshold: Optional[int]
     """Token threshold at which compaction should be triggered."""
-
-
-class GuardrailResponseGuardrailSpec(TypedDict, total=False):
-    """Specification for a guardrail to apply during response generation."""
-
-    type: Required[str]
-
-
-Guardrail: TypeAlias = Union[str, GuardrailResponseGuardrailSpec]
 
 
 class PromptVariablesOpenAIResponseInputMessageContentText(TypedDict, total=False):
