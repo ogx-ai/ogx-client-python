@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0-alpha.3 (2026-05-13)
+
+Full Changelog: [v0.8.0-alpha.2...v0.8.0-alpha.3](https://github.com/ogx-ai/ogx-client-python/compare/v0.8.0-alpha.2...v0.8.0-alpha.3)
+
 ## 0.8.0-alpha.2 (2026-05-12)
 
 Full Changelog: [v0.8.0-alpha.1...v0.8.0-alpha.2](https://github.com/ogx-ai/ogx-client-python/compare/v0.8.0-alpha.1...v0.8.0-alpha.2)
