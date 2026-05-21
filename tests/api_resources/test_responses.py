@@ -67,6 +67,7 @@ class TestResponses:
             prompt_cache_key="prompt_cache_key",
             reasoning={
                 "effort": "none",
+                "generate_summary": "auto",
                 "summary": "auto",
             },
             service_tier="auto",
@@ -169,6 +170,7 @@ class TestResponses:
             prompt_cache_key="prompt_cache_key",
             reasoning={
                 "effort": "none",
+                "generate_summary": "auto",
                 "summary": "auto",
             },
             service_tier="auto",
@@ -354,6 +356,7 @@ class TestResponses:
             prompt_cache_key="prompt_cache_key",
             reasoning={
                 "effort": "none",
+                "generate_summary": "auto",
                 "summary": "auto",
             },
             text={
@@ -449,6 +452,7 @@ class TestAsyncResponses:
             prompt_cache_key="prompt_cache_key",
             reasoning={
                 "effort": "none",
+                "generate_summary": "auto",
                 "summary": "auto",
             },
             service_tier="auto",
@@ -551,6 +555,7 @@ class TestAsyncResponses:
             prompt_cache_key="prompt_cache_key",
             reasoning={
                 "effort": "none",
+                "generate_summary": "auto",
                 "summary": "auto",
             },
             service_tier="auto",
@@ -736,6 +741,7 @@ class TestAsyncResponses:
             prompt_cache_key="prompt_cache_key",
             reasoning={
                 "effort": "none",
+                "generate_summary": "auto",
                 "summary": "auto",
             },
             text={

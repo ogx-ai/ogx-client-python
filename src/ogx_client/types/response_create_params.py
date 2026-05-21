@@ -784,6 +784,9 @@ class Reasoning(TypedDict, total=False):
 
     effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]]
 
+    generate_summary: Optional[Literal["auto", "concise", "detailed"]]
+    """Deprecated: use 'summary' instead."""
+
     summary: Optional[Literal["auto", "concise", "detailed"]]
     """Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'."""
 
