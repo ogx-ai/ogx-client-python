@@ -1057,6 +1057,9 @@ class Reasoning(BaseModel):
 
     effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] = None
 
+    generate_summary: Optional[Literal["auto", "concise", "detailed"]] = None
+    """Deprecated: use 'summary' instead."""
+
     summary: Optional[Literal["auto", "concise", "detailed"]] = None
     """Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'."""
 
@@ -1373,7 +1376,11 @@ class ResponseListResponse(BaseModel):
 
     top_p: Optional[float] = None
 
-    truncation: Optional[str] = None
+    truncation: Optional[Literal["auto", "disabled"]] = None
+    """
+    Controls how the service truncates input when it exceeds the model context
+    window.
+    """
 
     usage: Optional[Usage] = None
     """Usage information for OpenAI response."""
