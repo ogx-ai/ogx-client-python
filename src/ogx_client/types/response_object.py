@@ -824,7 +824,7 @@ class ResponseObject(BaseModel):
 
     max_tool_calls: Optional[int] = None
 
-    metadata: Optional[Dict[str, str]] = None
+    metadata: Optional[object] = None
 
     object: Optional[Literal["response"]] = None
 
