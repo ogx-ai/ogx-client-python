@@ -117,7 +117,7 @@ class ResponsesResource(SyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,7 +252,7 @@ class ResponsesResource(SyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -387,7 +387,7 @@ class ResponsesResource(SyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -522,7 +522,7 @@ class ResponsesResource(SyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -864,7 +864,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -999,7 +999,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1134,7 +1134,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1269,7 +1269,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         tools: Optional[Iterable[response_create_params.Tool]] | Omit = omit,
         top_logprobs: Optional[int] | Omit = omit,
         top_p: Optional[float] | Omit = omit,
-        truncation: Optional[Literal["auto", "disabled"]] | Omit = omit,
+        truncation: Literal["auto", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

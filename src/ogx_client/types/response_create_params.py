@@ -185,7 +185,7 @@ class ResponseCreateParamsBase(TypedDict, total=False):
     increase focus).
     """
 
-    truncation: Optional[Literal["auto", "disabled"]]
+    truncation: Literal["auto", "disabled"]
     """
     Controls how the service truncates input when it exceeds the model context
     window.
