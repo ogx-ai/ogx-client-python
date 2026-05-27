@@ -25,7 +25,12 @@ __all__ = [
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseMessageInputContentListOpenAIResponseOutputMessageContentOutputTextInputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextInputLogprob",
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseMessageInputContentListOpenAIResponseOutputMessageContentOutputTextInputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextInputLogprobTopLogprob",
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseMessageInputContentListOpenAIResponseOutputMessageContentOutputTextInputOpenAIResponseContentPartRefusalOpenAIResponseContentPartRefusal",
-    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCall",
+    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInput",
+    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputAction",
+    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearch",
+    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearchSource",
+    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionOpenPage",
+    "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionFind",
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageFileSearchToolCall",
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageFileSearchToolCallResult",
     "InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageFunctionToolCall",
@@ -62,6 +67,8 @@ __all__ = [
     "ToolChoiceOpenAIResponseInputToolChoiceCustomTool",
     "Tool",
     "ToolOpenAIResponseInputToolWebSearch",
+    "ToolOpenAIResponseInputToolWebSearchFilters",
+    "ToolOpenAIResponseInputToolWebSearchUserLocation",
     "ToolOpenAIResponseInputToolFileSearch",
     "ToolOpenAIResponseInputToolFileSearchRankingOptions",
     "ToolOpenAIResponseInputToolFunction",
@@ -415,7 +422,64 @@ class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutp
     type: Literal["message"]
 
 
-class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCall(
+class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearchSource(
+    TypedDict, total=False
+):
+    """A source URL returned by a web search action."""
+
+    url: Required[str]
+
+    type: Literal["url"]
+
+
+class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearch(
+    TypedDict, total=False
+):
+    """Web search action: performs a search query."""
+
+    query: Required[str]
+
+    queries: Optional[SequenceNotStr[str]]
+
+    sources: Optional[
+        Iterable[
+            InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearchSource
+        ]
+    ]
+
+    type: Literal["search"]
+
+
+class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionOpenPage(
+    TypedDict, total=False
+):
+    """Web search action: opens a specific URL from search results."""
+
+    type: Literal["open_page"]
+
+    url: Optional[str]
+
+
+class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionFind(
+    TypedDict, total=False
+):
+    """Web search action: searches for a pattern within a loaded page."""
+
+    pattern: Required[str]
+
+    url: Required[str]
+
+    type: Literal["find_in_page"]
+
+
+InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputAction: TypeAlias = Union[
+    InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearch,
+    InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionOpenPage,
+    InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionFind,
+]
+
+
+class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInput(
     TypedDict, total=False
 ):
     """Web search tool call output message for OpenAI responses."""
@@ -423,6 +487,11 @@ class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutp
     id: Required[str]
 
     status: Required[str]
+
+    action: Optional[
+        InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInputAction
+    ]
+    """Web search action: performs a search query."""
 
     type: Literal["web_search_call"]
 
@@ -702,7 +771,7 @@ class InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutp
 
 InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutput: TypeAlias = Union[
     InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseMessageInput,
-    InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCall,
+    InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageWebSearchToolCallInput,
     InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageFileSearchToolCall,
     InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageFunctionToolCall,
     InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutputOpenAIResponseOutputMessageMcpCall,
@@ -880,12 +949,38 @@ ToolChoice: TypeAlias = Union[
 ]
 
 
+class ToolOpenAIResponseInputToolWebSearchFilters(TypedDict, total=False):
+    """Domain filters for web search results."""
+
+    allowed_domains: Optional[SequenceNotStr[str]]
+
+
+class ToolOpenAIResponseInputToolWebSearchUserLocation(TypedDict, total=False):
+    """Approximate user location to refine web search results."""
+
+    city: Optional[str]
+
+    country: Optional[str]
+
+    region: Optional[str]
+
+    timezone: Optional[str]
+
+    type: Literal["approximate"]
+
+
 class ToolOpenAIResponseInputToolWebSearch(TypedDict, total=False):
     """Web search tool configuration for OpenAI response inputs."""
 
-    search_context_size: Optional[str]
+    filters: Optional[ToolOpenAIResponseInputToolWebSearchFilters]
+    """Domain filters for web search results."""
+
+    search_context_size: Optional[Literal["low", "medium", "high"]]
 
     type: Literal["web_search", "web_search_preview", "web_search_preview_2025_03_11", "web_search_2025_08_26"]
+
+    user_location: Optional[ToolOpenAIResponseInputToolWebSearchUserLocation]
+    """Approximate user location to refine web search results."""
 
 
 class ToolOpenAIResponseInputToolFileSearchRankingOptions(TypedDict, total=False):
