@@ -25,7 +25,12 @@ __all__ = [
     "ItemOpenAIResponseMessageInputContentListOpenAIResponseOutputMessageContentOutputTextInputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextInputLogprob",
     "ItemOpenAIResponseMessageInputContentListOpenAIResponseOutputMessageContentOutputTextInputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextInputLogprobTopLogprob",
     "ItemOpenAIResponseMessageInputContentListOpenAIResponseOutputMessageContentOutputTextInputOpenAIResponseContentPartRefusalOpenAIResponseContentPartRefusal",
-    "ItemOpenAIResponseOutputMessageWebSearchToolCall",
+    "ItemOpenAIResponseOutputMessageWebSearchToolCallInput",
+    "ItemOpenAIResponseOutputMessageWebSearchToolCallInputAction",
+    "ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearch",
+    "ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearchSource",
+    "ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionOpenPage",
+    "ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionFind",
     "ItemOpenAIResponseOutputMessageFileSearchToolCall",
     "ItemOpenAIResponseOutputMessageFileSearchToolCallResult",
     "ItemOpenAIResponseOutputMessageFunctionToolCall",
@@ -275,12 +280,60 @@ class ItemOpenAIResponseMessageInput(TypedDict, total=False):
     type: Literal["message"]
 
 
-class ItemOpenAIResponseOutputMessageWebSearchToolCall(TypedDict, total=False):
+class ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearchSource(TypedDict, total=False):
+    """A source URL returned by a web search action."""
+
+    url: Required[str]
+
+    type: Literal["url"]
+
+
+class ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearch(TypedDict, total=False):
+    """Web search action: performs a search query."""
+
+    query: Required[str]
+
+    queries: Optional[SequenceNotStr[str]]
+
+    sources: Optional[Iterable[ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearchSource]]
+
+    type: Literal["search"]
+
+
+class ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionOpenPage(TypedDict, total=False):
+    """Web search action: opens a specific URL from search results."""
+
+    type: Literal["open_page"]
+
+    url: Optional[str]
+
+
+class ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionFind(TypedDict, total=False):
+    """Web search action: searches for a pattern within a loaded page."""
+
+    pattern: Required[str]
+
+    url: Required[str]
+
+    type: Literal["find_in_page"]
+
+
+ItemOpenAIResponseOutputMessageWebSearchToolCallInputAction: TypeAlias = Union[
+    ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionSearch,
+    ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionOpenPage,
+    ItemOpenAIResponseOutputMessageWebSearchToolCallInputActionWebSearchActionFind,
+]
+
+
+class ItemOpenAIResponseOutputMessageWebSearchToolCallInput(TypedDict, total=False):
     """Web search tool call output message for OpenAI responses."""
 
     id: Required[str]
 
     status: Required[str]
+
+    action: Optional[ItemOpenAIResponseOutputMessageWebSearchToolCallInputAction]
+    """Web search action: performs a search query."""
 
     type: Literal["web_search_call"]
 
@@ -518,7 +571,7 @@ class ItemOpenAIResponseCompaction(TypedDict, total=False):
 
 Item: TypeAlias = Union[
     ItemOpenAIResponseMessageInput,
-    ItemOpenAIResponseOutputMessageWebSearchToolCall,
+    ItemOpenAIResponseOutputMessageWebSearchToolCallInput,
     ItemOpenAIResponseOutputMessageFileSearchToolCall,
     ItemOpenAIResponseOutputMessageFunctionToolCall,
     ItemOpenAIResponseInputFunctionToolCallOutput,

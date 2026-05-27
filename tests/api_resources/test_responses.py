@@ -88,8 +88,16 @@ class TestResponses:
             tool_choice="auto",
             tools=[
                 {
-                    "search_context_size": 'S?oC"high',
+                    "filters": {"allowed_domains": ["string"]},
+                    "search_context_size": "low",
                     "type": "web_search",
+                    "user_location": {
+                        "city": "city",
+                        "country": "country",
+                        "region": "region",
+                        "timezone": "timezone",
+                        "type": "approximate",
+                    },
                 }
             ],
             top_logprobs=0,
@@ -190,8 +198,16 @@ class TestResponses:
             tool_choice="auto",
             tools=[
                 {
-                    "search_context_size": 'S?oC"high',
+                    "filters": {"allowed_domains": ["string"]},
+                    "search_context_size": "low",
                     "type": "web_search",
+                    "user_location": {
+                        "city": "city",
+                        "country": "country",
+                        "region": "region",
+                        "timezone": "timezone",
+                        "type": "approximate",
+                    },
                 }
             ],
             top_logprobs=0,
@@ -371,8 +387,16 @@ class TestResponses:
             },
             tools=[
                 {
-                    "search_context_size": 'S?oC"high',
+                    "filters": {"allowed_domains": ["string"]},
+                    "search_context_size": "low",
                     "type": "web_search",
+                    "user_location": {
+                        "city": "city",
+                        "country": "country",
+                        "region": "region",
+                        "timezone": "timezone",
+                        "type": "approximate",
+                    },
                 }
             ],
         )
@@ -473,8 +497,16 @@ class TestAsyncResponses:
             tool_choice="auto",
             tools=[
                 {
-                    "search_context_size": 'S?oC"high',
+                    "filters": {"allowed_domains": ["string"]},
+                    "search_context_size": "low",
                     "type": "web_search",
+                    "user_location": {
+                        "city": "city",
+                        "country": "country",
+                        "region": "region",
+                        "timezone": "timezone",
+                        "type": "approximate",
+                    },
                 }
             ],
             top_logprobs=0,
@@ -575,8 +607,16 @@ class TestAsyncResponses:
             tool_choice="auto",
             tools=[
                 {
-                    "search_context_size": 'S?oC"high',
+                    "filters": {"allowed_domains": ["string"]},
+                    "search_context_size": "low",
                     "type": "web_search",
+                    "user_location": {
+                        "city": "city",
+                        "country": "country",
+                        "region": "region",
+                        "timezone": "timezone",
+                        "type": "approximate",
+                    },
                 }
             ],
             top_logprobs=0,
@@ -756,8 +796,16 @@ class TestAsyncResponses:
             },
             tools=[
                 {
-                    "search_context_size": 'S?oC"high',
+                    "filters": {"allowed_domains": ["string"]},
+                    "search_context_size": "low",
                     "type": "web_search",
+                    "user_location": {
+                        "city": "city",
+                        "country": "country",
+                        "region": "region",
+                        "timezone": "timezone",
+                        "type": "approximate",
+                    },
                 }
             ],
         )
