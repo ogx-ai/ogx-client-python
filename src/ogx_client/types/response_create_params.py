@@ -159,6 +159,12 @@ class ResponseCreateParamsBase(TypedDict, total=False):
     Controls how much reasoning the model performs before generating a response.
     """
 
+    safety_identifier: Optional[str]
+    """
+    A stable identifier used to associate the request with an end user, for safety
+    monitoring. Echoed back on the response.
+    """
+
     service_tier: Optional[Literal["auto", "default", "flex", "priority"]]
     """The service tier for the request."""
 
