@@ -107,6 +107,7 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Omit = omit,
@@ -168,6 +169,9 @@ class ResponsesResource(SyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
+
+          safety_identifier: A stable identifier used to associate the request with an end user, for safety
+              monitoring. Echoed back on the response.
 
           service_tier: The service tier for the request.
 
@@ -243,6 +247,7 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -305,6 +310,9 @@ class ResponsesResource(SyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
+
+          safety_identifier: A stable identifier used to associate the request with an end user, for safety
+              monitoring. Echoed back on the response.
 
           service_tier: The service tier for the request.
 
@@ -378,6 +386,7 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -440,6 +449,9 @@ class ResponsesResource(SyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
+
+          safety_identifier: A stable identifier used to associate the request with an end user, for safety
+              monitoring. Echoed back on the response.
 
           service_tier: The service tier for the request.
 
@@ -512,6 +524,7 @@ class ResponsesResource(SyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Literal[True] | Omit = omit,
@@ -552,6 +565,7 @@ class ResponsesResource(SyncAPIResource):
                     "prompt": prompt,
                     "prompt_cache_key": prompt_cache_key,
                     "reasoning": reasoning,
+                    "safety_identifier": safety_identifier,
                     "service_tier": service_tier,
                     "store": store,
                     "stream": stream,
@@ -854,6 +868,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Omit = omit,
@@ -915,6 +930,9 @@ class AsyncResponsesResource(AsyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
+
+          safety_identifier: A stable identifier used to associate the request with an end user, for safety
+              monitoring. Echoed back on the response.
 
           service_tier: The service tier for the request.
 
@@ -990,6 +1008,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -1052,6 +1071,9 @@ class AsyncResponsesResource(AsyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
+
+          safety_identifier: A stable identifier used to associate the request with an end user, for safety
+              monitoring. Echoed back on the response.
 
           service_tier: The service tier for the request.
 
@@ -1125,6 +1147,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream_options: Optional[response_create_params.StreamOptions] | Omit = omit,
@@ -1187,6 +1210,9 @@ class AsyncResponsesResource(AsyncAPIResource):
           reasoning: Configuration for reasoning effort in OpenAI responses.
 
               Controls how much reasoning the model performs before generating a response.
+
+          safety_identifier: A stable identifier used to associate the request with an end user, for safety
+              monitoring. Echoed back on the response.
 
           service_tier: The service tier for the request.
 
@@ -1259,6 +1285,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         prompt: Optional[response_create_params.Prompt] | Omit = omit,
         prompt_cache_key: Optional[str] | Omit = omit,
         reasoning: Optional[response_create_params.Reasoning] | Omit = omit,
+        safety_identifier: Optional[str] | Omit = omit,
         service_tier: Optional[Literal["auto", "default", "flex", "priority"]] | Omit = omit,
         store: bool | Omit = omit,
         stream: Literal[False] | Literal[True] | Omit = omit,
@@ -1299,6 +1326,7 @@ class AsyncResponsesResource(AsyncAPIResource):
                     "prompt": prompt,
                     "prompt_cache_key": prompt_cache_key,
                     "reasoning": reasoning,
+                    "safety_identifier": safety_identifier,
                     "service_tier": service_tier,
                     "store": store,
                     "stream": stream,
