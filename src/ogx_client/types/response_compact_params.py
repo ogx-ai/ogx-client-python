@@ -67,8 +67,8 @@ __all__ = [
 
 
 class ResponseCompactParams(TypedDict, total=False):
-    model: Required[str]
-    """The model to use for generating the compacted summary."""
+    model: Required[Optional[str]]
+    """Model identifier."""
 
     input: Union[str, Iterable[InputListOpenAIResponseMessageUnionOpenAIResponseInputFunctionToolCallOutput], None]
     """Input message(s) to compact."""
