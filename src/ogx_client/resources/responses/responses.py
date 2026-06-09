@@ -718,7 +718,7 @@ class ResponsesResource(SyncAPIResource):
     def compact(
         self,
         *,
-        model: str,
+        model: Optional[str],
         input: Union[
             str,
             Iterable[
@@ -746,7 +746,7 @@ class ResponsesResource(SyncAPIResource):
         preserving context. This endpoint is in alpha and may change without notice.
 
         Args:
-          model: The model to use for generating the compacted summary.
+          model: Model identifier.
 
           input: Input message(s) to compact.
 
@@ -1479,7 +1479,7 @@ class AsyncResponsesResource(AsyncAPIResource):
     async def compact(
         self,
         *,
-        model: str,
+        model: Optional[str],
         input: Union[
             str,
             Iterable[
@@ -1507,7 +1507,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         preserving context. This endpoint is in alpha and may change without notice.
 
         Args:
-          model: The model to use for generating the compacted summary.
+          model: Model identifier.
 
           input: Input message(s) to compact.
 
