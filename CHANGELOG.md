@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.0-alpha.3 (2026-06-11)
+
+Full Changelog: [v0.8.0-alpha.2...v1.1.0-alpha.3](https://github.com/ogx-ai/ogx-client-python/compare/v0.8.0-alpha.2...v1.1.0-alpha.3)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** add post-generation schema transforms for Responses API conformance
+
+### Features
+
+* **responses:** add WebSocket transport and fix OpenResponses conformance gaps ([e470f35](https://github.com/ogx-ai/ogx-client-python/commit/e470f354f25f09fc3400a9b66657f3f077dce95b))
+
+
+### Bug Fixes
+
+* **api:** add post-generation schema transforms for Responses API conformance ([96d1529](https://github.com/ogx-ai/ogx-client-python/commit/96d1529b8003b26fd016974140f6eb9618037cc8))
+* **api:** eliminate schema mismatches in Responses compact endpoint ([28931c4](https://github.com/ogx-ai/ogx-client-python/commit/28931c4593e69479179de766e9419bd092e603af))
+* **api:** fix field-level schema mismatches in Responses models ([aa50fe9](https://github.com/ogx-ai/ogx-client-python/commit/aa50fe9861d4642231fc4ea2d3925220b7bc25ac))
+* **brave-search:** align result slicing with search_context_size count ([40f7162](https://github.com/ogx-ai/ogx-client-python/commit/40f71628597b92ed14c6ae3445e09ffb2927da53))
+
 ## 0.8.0-alpha.2 (2026-05-12)
 
 Full Changelog: [v0.8.0-alpha.1...v0.8.0-alpha.2](https://github.com/ogx-ai/ogx-client-python/compare/v0.8.0-alpha.1...v0.8.0-alpha.2)
