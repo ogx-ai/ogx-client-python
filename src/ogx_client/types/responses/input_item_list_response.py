@@ -24,7 +24,12 @@ __all__ = [
     "DataOpenAIResponseMessageOutputContentListOpenAIResponseOutputMessageContentOutputTextOutputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextOutputLogprob",
     "DataOpenAIResponseMessageOutputContentListOpenAIResponseOutputMessageContentOutputTextOutputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextOutputLogprobTopLogprob",
     "DataOpenAIResponseMessageOutputContentListOpenAIResponseOutputMessageContentOutputTextOutputOpenAIResponseContentPartRefusalOpenAIResponseContentPartRefusal",
-    "DataOpenAIResponseOutputMessageWebSearchToolCall",
+    "DataOpenAIResponseOutputMessageWebSearchToolCallOutput",
+    "DataOpenAIResponseOutputMessageWebSearchToolCallOutputAction",
+    "DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearch",
+    "DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearchSource",
+    "DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionOpenPage",
+    "DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionFind",
     "DataOpenAIResponseOutputMessageFileSearchToolCall",
     "DataOpenAIResponseOutputMessageFileSearchToolCallResult",
     "DataOpenAIResponseOutputMessageFunctionToolCall",
@@ -275,12 +280,63 @@ class DataOpenAIResponseMessageOutput(BaseModel):
     type: Optional[Literal["message"]] = None
 
 
-class DataOpenAIResponseOutputMessageWebSearchToolCall(BaseModel):
+class DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearchSource(BaseModel):
+    """A source URL returned by a web search action."""
+
+    url: str
+
+    type: Optional[Literal["url"]] = None
+
+
+class DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearch(BaseModel):
+    """Web search action: performs a search query."""
+
+    query: str
+
+    queries: Optional[List[str]] = None
+
+    sources: Optional[List[DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearchSource]] = (
+        None
+    )
+
+    type: Optional[Literal["search"]] = None
+
+
+class DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionOpenPage(BaseModel):
+    """Web search action: opens a specific URL from search results."""
+
+    type: Optional[Literal["open_page"]] = None
+
+    url: Optional[str] = None
+
+
+class DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionFind(BaseModel):
+    """Web search action: searches for a pattern within a loaded page."""
+
+    pattern: str
+
+    url: str
+
+    type: Optional[Literal["find_in_page"]] = None
+
+
+DataOpenAIResponseOutputMessageWebSearchToolCallOutputAction: TypeAlias = Union[
+    DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearch,
+    DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionOpenPage,
+    DataOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionFind,
+    None,
+]
+
+
+class DataOpenAIResponseOutputMessageWebSearchToolCallOutput(BaseModel):
     """Web search tool call output message for OpenAI responses."""
 
     id: str
 
     status: str
+
+    action: Optional[DataOpenAIResponseOutputMessageWebSearchToolCallOutputAction] = None
+    """Web search action: performs a search query."""
 
     type: Optional[Literal["web_search_call"]] = None
 
@@ -519,7 +575,7 @@ class DataOpenAIResponseCompaction(BaseModel):
 
 Data: TypeAlias = Union[
     DataOpenAIResponseMessageOutput,
-    DataOpenAIResponseOutputMessageWebSearchToolCall,
+    DataOpenAIResponseOutputMessageWebSearchToolCallOutput,
     DataOpenAIResponseOutputMessageFileSearchToolCall,
     DataOpenAIResponseOutputMessageFunctionToolCall,
     DataOpenAIResponseOutputMessageMcpCall,

@@ -26,7 +26,12 @@ __all__ = [
     "OutputOpenAIResponseMessageOutputContentListOpenAIResponseOutputMessageContentOutputTextOutputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextOutputLogprob",
     "OutputOpenAIResponseMessageOutputContentListOpenAIResponseOutputMessageContentOutputTextOutputOpenAIResponseContentPartRefusalOpenAIResponseOutputMessageContentOutputTextOutputLogprobTopLogprob",
     "OutputOpenAIResponseMessageOutputContentListOpenAIResponseOutputMessageContentOutputTextOutputOpenAIResponseContentPartRefusalOpenAIResponseContentPartRefusal",
-    "OutputOpenAIResponseOutputMessageWebSearchToolCall",
+    "OutputOpenAIResponseOutputMessageWebSearchToolCallOutput",
+    "OutputOpenAIResponseOutputMessageWebSearchToolCallOutputAction",
+    "OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearch",
+    "OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearchSource",
+    "OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionOpenPage",
+    "OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionFind",
     "OutputOpenAIResponseOutputMessageFileSearchToolCall",
     "OutputOpenAIResponseOutputMessageFileSearchToolCallResult",
     "OutputOpenAIResponseOutputMessageFunctionToolCall",
@@ -56,6 +61,8 @@ __all__ = [
     "ToolChoiceOpenAIResponseInputToolChoiceCustomTool",
     "Tool",
     "ToolOpenAIResponseInputToolWebSearch",
+    "ToolOpenAIResponseInputToolWebSearchFilters",
+    "ToolOpenAIResponseInputToolWebSearchUserLocation",
     "ToolOpenAIResponseInputToolFileSearch",
     "ToolOpenAIResponseInputToolFileSearchRankingOptions",
     "ToolOpenAIResponseInputToolFunction",
@@ -298,12 +305,63 @@ class OutputOpenAIResponseMessageOutput(BaseModel):
     type: Optional[Literal["message"]] = None
 
 
-class OutputOpenAIResponseOutputMessageWebSearchToolCall(BaseModel):
+class OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearchSource(BaseModel):
+    """A source URL returned by a web search action."""
+
+    url: str
+
+    type: Optional[Literal["url"]] = None
+
+
+class OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearch(BaseModel):
+    """Web search action: performs a search query."""
+
+    query: str
+
+    queries: Optional[List[str]] = None
+
+    sources: Optional[
+        List[OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearchSource]
+    ] = None
+
+    type: Optional[Literal["search"]] = None
+
+
+class OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionOpenPage(BaseModel):
+    """Web search action: opens a specific URL from search results."""
+
+    type: Optional[Literal["open_page"]] = None
+
+    url: Optional[str] = None
+
+
+class OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionFind(BaseModel):
+    """Web search action: searches for a pattern within a loaded page."""
+
+    pattern: str
+
+    url: str
+
+    type: Optional[Literal["find_in_page"]] = None
+
+
+OutputOpenAIResponseOutputMessageWebSearchToolCallOutputAction: TypeAlias = Union[
+    OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionSearch,
+    OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionOpenPage,
+    OutputOpenAIResponseOutputMessageWebSearchToolCallOutputActionWebSearchActionFind,
+    None,
+]
+
+
+class OutputOpenAIResponseOutputMessageWebSearchToolCallOutput(BaseModel):
     """Web search tool call output message for OpenAI responses."""
 
     id: str
 
     status: str
+
+    action: Optional[OutputOpenAIResponseOutputMessageWebSearchToolCallOutputAction] = None
+    """Web search action: performs a search query."""
 
     type: Optional[Literal["web_search_call"]] = None
 
@@ -448,7 +506,7 @@ class OutputOpenAIResponseOutputMessageReasoningItem(BaseModel):
 Output: TypeAlias = Annotated[
     Union[
         OutputOpenAIResponseMessageOutput,
-        OutputOpenAIResponseOutputMessageWebSearchToolCall,
+        OutputOpenAIResponseOutputMessageWebSearchToolCallOutput,
         OutputOpenAIResponseOutputMessageFileSearchToolCall,
         OutputOpenAIResponseOutputMessageFunctionToolCall,
         OutputOpenAIResponseOutputMessageMcpCall,
@@ -535,6 +593,9 @@ class Reasoning(BaseModel):
     """
 
     effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] = None
+
+    generate_summary: Optional[Literal["auto", "concise", "detailed"]] = None
+    """Deprecated: use 'summary' instead."""
 
     summary: Optional[Literal["auto", "concise", "detailed"]] = None
     """Summary mode for reasoning output. One of 'auto', 'concise', or 'detailed'."""
@@ -625,14 +686,40 @@ ToolChoice: TypeAlias = Union[
 ]
 
 
+class ToolOpenAIResponseInputToolWebSearchFilters(BaseModel):
+    """Domain filters for web search results."""
+
+    allowed_domains: Optional[List[str]] = None
+
+
+class ToolOpenAIResponseInputToolWebSearchUserLocation(BaseModel):
+    """Approximate user location to refine web search results."""
+
+    city: Optional[str] = None
+
+    country: Optional[str] = None
+
+    region: Optional[str] = None
+
+    timezone: Optional[str] = None
+
+    type: Optional[Literal["approximate"]] = None
+
+
 class ToolOpenAIResponseInputToolWebSearch(BaseModel):
     """Web search tool configuration for OpenAI response inputs."""
 
-    search_context_size: Optional[str] = None
+    filters: Optional[ToolOpenAIResponseInputToolWebSearchFilters] = None
+    """Domain filters for web search results."""
+
+    search_context_size: Optional[Literal["low", "medium", "high"]] = None
 
     type: Optional[
         Literal["web_search", "web_search_preview", "web_search_preview_2025_03_11", "web_search_2025_08_26"]
     ] = None
+
+    user_location: Optional[ToolOpenAIResponseInputToolWebSearchUserLocation] = None
+    """Approximate user location to refine web search results."""
 
 
 class ToolOpenAIResponseInputToolFileSearchRankingOptions(BaseModel):
@@ -821,7 +908,7 @@ class ResponseObject(BaseModel):
 
     max_tool_calls: Optional[int] = None
 
-    metadata: Optional[Dict[str, str]] = None
+    metadata: Optional[object] = None
 
     object: Optional[Literal["response"]] = None
 
@@ -842,6 +929,8 @@ class ResponseObject(BaseModel):
     Controls how much reasoning the model performs before generating a response.
     """
 
+    safety_identifier: Optional[str] = None
+
     service_tier: Optional[str] = None
 
     temperature: Optional[float] = None
@@ -858,7 +947,11 @@ class ResponseObject(BaseModel):
 
     top_p: Optional[float] = None
 
-    truncation: Optional[str] = None
+    truncation: Optional[Literal["auto", "disabled"]] = None
+    """
+    Controls how the service truncates input when it exceeds the model context
+    window.
+    """
 
     usage: Optional[Usage] = None
     """Usage information for OpenAI response."""
