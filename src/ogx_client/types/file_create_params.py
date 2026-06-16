@@ -7,7 +7,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .._types import FileTypes
 
-__all__ = ["FileCreateParams", "ExpiresAfter"]
+__all__ = ["FileCreateParams"]
 
 
 class FileCreateParams(TypedDict, total=False):
@@ -17,15 +17,5 @@ class FileCreateParams(TypedDict, total=False):
     purpose: Required[Literal["assistants", "batch", "fine-tune", "vision", "user_data", "evals"]]
     """The intended purpose of the uploaded file."""
 
-    expires_after: Optional[ExpiresAfter]
-    """Control expiration of uploaded files."""
-
-
-class ExpiresAfter(TypedDict, total=False):
-    """Control expiration of uploaded files."""
-
-    anchor: Required[Literal["created_at"]]
-    """The anchor point for expiration, must be 'created_at'."""
-
-    seconds: Required[int]
-    """Seconds until expiration, between 3600 (1 hour) and 2592000 (30 days)."""
+    expires_after: Optional[str]
+    """Optional expiration settings for the file."""
