@@ -31,10 +31,7 @@ class TestFiles:
         file = client.files.create(
             file=b"Example data",
             purpose="assistants",
-            expires_after={
-                "anchor": "created_at",
-                "seconds": 3600,
-            },
+            expires_after="expires_after",
         )
         assert_matches_type(File, file, path=["response"])
 
@@ -232,10 +229,7 @@ class TestAsyncFiles:
         file = await async_client.files.create(
             file=b"Example data",
             purpose="assistants",
-            expires_after={
-                "anchor": "created_at",
-                "seconds": 3600,
-            },
+            expires_after="expires_after",
         )
         assert_matches_type(File, file, path=["response"])
 
