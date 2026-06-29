@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.0-alpha.4 (2026-06-29)
+
+Full Changelog: [v1.1.0-alpha.3...v1.1.0-alpha.4](https://github.com/ogx-ai/ogx-client-python/compare/v1.1.0-alpha.3...v1.1.0-alpha.4)
+
+### Features
+
+* **files:** fix Files API gaps for OpenAI spec parity ([df9183a](https://github.com/ogx-ai/ogx-client-python/commit/df9183a37eb6f7647143f4de56835a29bd1cf95c))
+
+
+### Bug Fixes
+
+* **types:** avoid type-checker errors on params with additional properties ([f61c94c](https://github.com/ogx-ai/ogx-client-python/commit/f61c94cccb0cee3891b08a2d60109992e60a82b4))
+
 ## 1.1.0-alpha.3 (2026-06-11)
 
 Full Changelog: [v0.8.0-alpha.2...v1.1.0-alpha.3](https://github.com/ogx-ai/ogx-client-python/compare/v0.8.0-alpha.2...v1.1.0-alpha.3)

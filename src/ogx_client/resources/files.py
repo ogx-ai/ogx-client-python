@@ -54,7 +54,7 @@ class FilesResource(SyncAPIResource):
         *,
         file: FileTypes,
         purpose: Literal["assistants", "batch", "fine-tune", "vision", "user_data", "evals"],
-        expires_after: Optional[file_create_params.ExpiresAfter] | Omit = omit,
+        expires_after: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -70,7 +70,7 @@ class FilesResource(SyncAPIResource):
 
           purpose: The intended purpose of the uploaded file.
 
-          expires_after: Control expiration of uploaded files.
+          expires_after: Optional expiration settings for the file.
 
           extra_headers: Send extra headers
 
@@ -305,7 +305,7 @@ class AsyncFilesResource(AsyncAPIResource):
         *,
         file: FileTypes,
         purpose: Literal["assistants", "batch", "fine-tune", "vision", "user_data", "evals"],
-        expires_after: Optional[file_create_params.ExpiresAfter] | Omit = omit,
+        expires_after: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -321,7 +321,7 @@ class AsyncFilesResource(AsyncAPIResource):
 
           purpose: The intended purpose of the uploaded file.
 
-          expires_after: Control expiration of uploaded files.
+          expires_after: Optional expiration settings for the file.
 
           extra_headers: Send extra headers
 
