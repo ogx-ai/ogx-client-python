@@ -271,7 +271,11 @@ class MessageOpenAIAssistantMessageParamInputToolCall(TypedDict, total=False):
     """Must be 'function' to identify this as a function call."""
 
 
-class MessageOpenAIAssistantMessageParamInput(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class MessageOpenAIAssistantMessageParamInput(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """
     A message containing the model's (assistant) response in an OpenAI-compatible chat completion request.
     """
